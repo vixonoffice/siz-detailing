@@ -14,12 +14,10 @@ export const useLenis = () => {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
     });
 
-    // Synchronize Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {

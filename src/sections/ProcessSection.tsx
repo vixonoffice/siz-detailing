@@ -98,7 +98,7 @@ export default function ProcessSection() {
                   whileInView={{ scale: 1, opacity: 1, rotateY: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative aspect-square md:aspect-video rounded-[4rem] overflow-hidden group cursor-none"
+                  className="relative aspect-square md:aspect-video rounded-[4rem] overflow-hidden group md:cursor-none"
                 >
                   <img src={step.image} alt={step.title} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#010101] via-transparent to-transparent opacity-60" />

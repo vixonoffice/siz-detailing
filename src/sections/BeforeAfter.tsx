@@ -112,7 +112,7 @@ export default function BeforeAfter() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.2, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group cursor-none"
+              className="relative group md:cursor-none"
             >
               <div className="absolute -inset-1 bg-primary/20 blur-3xl rounded-[4rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               <div className="relative rounded-[4rem] overflow-hidden border border-white/5 bg-[#050505]">

@@ -51,6 +51,21 @@
   }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 45s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 @layer utilities {
   .clip-path-slant {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);

@@ -45,7 +45,7 @@ export default function Contact() {
             </p>
 
             <div className="space-y-12">
-              <a href="tel:0761639988" className="flex items-center gap-8 group cursor-none">
+              <a href="tel:0761639988" className="flex items-center gap-8 group md:cursor-none">
                 <div className="w-20 h-20 rounded-[2rem] bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-primary group-hover:shadow-[0_0_50px_rgba(255,0,0,0.4)] transition-all duration-700">
                   <Phone className="text-primary group-hover:text-white w-8 h-8" />
                 </div>

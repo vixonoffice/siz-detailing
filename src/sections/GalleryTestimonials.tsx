@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const galleryImages = [
@@ -52,7 +52,7 @@ export default function GalleryTestimonials() {
 
   return (
     <div className="bg-[#010101] overflow-hidden">
-      {/* Gallery Section - Cinematic Masonry */}
+      {/* Gallery Section */}
       <section id="gallery" className="py-32 px-6 md:px-12 relative">
         <div className="max-w-[1800px] mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-32 gap-8">
@@ -83,19 +83,24 @@ export default function GalleryTestimonials() {
                 transition={{ delay: index * 0.05, duration: 0.8 }}
                 onClick={() => setSelectedImage(image)}
                 className={cn(
-                  "relative group cursor-none overflow-hidden rounded-2xl border border-white/5 bg-[#050505]",
-                  index === 0 || index === 7 ? "md:col-span-2 md:row-span-2 h-[600px]" : "md:col-span-1 md:row-span-1 h-[290px]"
+                  'relative group md:cursor-none cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-[#050505]',
+                  index === 0 || index === 7
+                    ? 'md:col-span-2 md:row-span-2 h-[600px]'
+                    : 'md:col-span-1 md:row-span-1 h-[290px]'
                 )}
               >
-                <img src={image} alt={`Gallery ${index}`} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" />
+                <img
+                  src={image}
+                  alt={`Gallery ${index}`}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                
-                {/* HUD Elements on Hover */}
+
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 p-8 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <div className="text-[8px] font-black text-white/40 tracking-widest uppercase">ID_{index + 1024}</div>
+                  <div className="text-[8px] font-black text-white/40 tracking-widest uppercase">ID_{index + 1024}</div>
+                  <div className="text-[10px] font-black text-primary uppercase tracking-[0.2em] border border-primary/20 w-fit px-3 py-1 rounded-full bg-primary/5">
+                    Project_Active
                   </div>
-                  <div className="text-[10px] font-black text-primary uppercase tracking-[0.2em] border border-primary/20 w-fit px-3 py-1 rounded-full bg-primary/5">Project_Active</div>
                 </div>
               </motion.div>
             ))}
@@ -103,8 +108,8 @@ export default function GalleryTestimonials() {
         </div>
       </section>
 
-      {/* Testimonials - Cinematic Horizontal Scroll */}
-      <section className="py-32 bg-[#050505] relative">
+      {/* Testimonials — CSS marquee for seamless infinite loop */}
+      <section className="py-32 bg-[#050505] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -119,20 +124,16 @@ export default function GalleryTestimonials() {
           </motion.div>
         </div>
 
-        <div className="relative w-full flex overflow-hidden">
-          <motion.div
-            className="flex gap-8 whitespace-nowrap py-10"
-            animate={{ x: [0, -1000] }}
-            transition={{
-              duration: 40,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {[...testimonials, ...testimonials].map((t, i) => (
+        <div className="relative w-full overflow-hidden">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+
+          <div className="marquee-track flex gap-8 py-10">
+            {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <div
                 key={i}
-                className="bg-[#0A0A0A] border border-white/5 p-12 w-[400px] md:w-[500px] rounded-[3rem] inline-block whitespace-normal group hover:border-primary/30 transition-all duration-500"
+                className="bg-[#0A0A0A] border border-white/5 p-12 w-[380px] md:w-[480px] shrink-0 rounded-[3rem] group hover:border-primary/30 transition-all duration-500"
               >
                 <div className="flex gap-1 mb-8">
                   {[...Array(t.stars)].map((_, j) => (
@@ -149,9 +150,21 @@ export default function GalleryTestimonials() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
+
+      {selectedImage && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-xl flex items-center justify-center p-8"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img src={selectedImage} alt="Gallery" className="max-w-full max-h-full object-contain rounded-2xl" />
+        </motion.div>
+      )}
     </div>
   );
 }
