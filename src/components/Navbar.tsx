@@ -23,49 +23,63 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-[100] transition-all duration-700 py-10 px-12 md:px-24',
-        isScrolled 
-          ? 'py-6 bg-black/50 backdrop-blur-xl border-b border-white/5' 
+        'fixed top-0 left-0 right-0 z-[100] transition-all duration-700 py-6 md:py-8 px-6 md:px-12 lg:px-24',
+        isScrolled
+          ? 'py-4 md:py-5 bg-background/60 backdrop-blur-2xl border-b border-white/[0.04]'
           : 'bg-transparent'
       )}
     >
       <div className="max-w-[1800px] mx-auto flex items-center justify-between">
-        {/* Logo - Minimal & Aggressive */}
-        <a href="#home" className="flex items-baseline gap-1 group">
-          <span className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white group-hover:text-primary transition-colors">Siz</span>
-          <div className="w-2 h-2 bg-primary rounded-full group-hover:scale-150 transition-transform" />
+        {/* Logo */}
+        <a href="#home" className="flex items-baseline gap-1 group relative z-50">
+          <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white group-hover:text-primary transition-colors font-display">
+            Siz
+          </span>
+          <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 group-hover:shadow-glow-sm transition-all duration-300" />
         </a>
 
-        {/* Desktop Links - Minimalist Approach */}
-        <div className="hidden lg:flex items-center gap-16">
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-10 xl:gap-14">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30 hover:text-white transition-all relative group"
+              className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/25 hover:text-white transition-all duration-300 relative group"
             >
               {link.name}
-              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
+              <span className="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-gradient-to-r from-primary to-primary/0 transition-all duration-500 group-hover:w-full" />
             </a>
           ))}
           <a
             href="#contact"
-            className="group relative px-10 py-4"
+            className="group relative px-8 py-3"
           >
-            <div className="absolute inset-0 bg-white/5 rounded-full border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all duration-500" />
-            <span className="relative z-10 text-[10px] font-black uppercase tracking-[0.3em] text-white">Rezervă Acum</span>
+            <div className="absolute inset-0 bg-white/[0.03] rounded-full border border-white/[0.08] group-hover:bg-primary group-hover:border-primary group-hover:shadow-glow transition-all duration-500" />
+            <span className="relative z-10 text-[10px] font-bold uppercase tracking-[0.25em] text-white/60 group-hover:text-white transition-colors">
+              Rezervă Acum
+            </span>
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden text-white relative z-50 w-10 h-10 flex items-center justify-center"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -73,28 +87,40 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-[70px] bg-background/95 backdrop-blur-xl z-40 md:hidden flex flex-col items-center justify-center space-y-8 p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-background/98 backdrop-blur-2xl z-40 lg:hidden flex flex-col items-center justify-center"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
+            {/* Ambient glow */}
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/[0.06] blur-[100px] rounded-full pointer-events-none" />
+
+            <div className="flex flex-col items-center gap-6">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.08, duration: 0.5 }}
+                  className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white/60 hover:text-white transition-colors font-display"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <motion.a
+                href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-2xl font-semibold hover:text-primary transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.08, duration: 0.5 }}
+                className="mt-4 w-64 text-center px-8 py-4 bg-primary text-white font-black uppercase tracking-wider rounded-xl shadow-glow text-sm"
               >
-                {link.name}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full max-w-xs text-center px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20"
-            >
-              Programează-te Acum
-            </a>
+                Programează-te Acum
+              </motion.a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -8,13 +8,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function MagneticButton({ 
-  variant = 'primary', 
-  children, 
+export default function MagneticButton({
+  variant = 'primary',
+  children,
   className,
-  ...props 
+  ...props
 }: ButtonProps) {
-  const mouseRef = useRef({ x: 0, y: 0 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,12 +21,10 @@ export default function MagneticButton({
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
-    
-    // Magnetic intensity
-    const x = (clientX - centerX) * 0.4;
-    const y = (clientY - centerY) * 0.4;
-    
-    setPosition({ x, y });
+    setPosition({
+      x: (clientX - centerX) * 0.35,
+      y: (clientY - centerY) * 0.35,
+    });
   };
 
   const handleMouseLeave = () => {
@@ -41,10 +38,10 @@ export default function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        'relative px-8 py-4 rounded-xl font-bold transition-all duration-300 group overflow-hidden',
-        variant === 'primary' 
-          ? 'bg-primary text-white shadow-[0_0_20px_rgba(255,0,0,0.3)] hover:shadow-[0_0_30px_rgba(255,0,0,0.5)]'
-          : 'bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10',
+        'relative px-8 py-4 rounded-xl font-bold transition-all duration-500 group overflow-hidden',
+        variant === 'primary'
+          ? 'bg-primary text-white shadow-glow hover:shadow-glow-lg'
+          : 'bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/15',
         className
       )}
       {...props}
@@ -52,9 +49,9 @@ export default function MagneticButton({
       <span className="relative z-10 flex items-center justify-center gap-2">
         {children}
       </span>
-      {/* Hover glow effect for primary */}
+      {/* Shimmer sweep */}
       {variant === 'primary' && (
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
       )}
     </motion.button>
   );

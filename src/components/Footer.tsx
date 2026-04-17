@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
-import { Facebook, Instagram, Phone, MapPin, Clock } from 'lucide-react';
+import { Facebook, Instagram, Phone, MapPin } from 'lucide-react';
 
 const TikTokIcon = () => (
-  <svg 
-    viewBox="0 0 24 24" 
-    fill="currentColor" 
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
     className="w-5 h-5"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -16,46 +15,46 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#020202] pt-32 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <footer className="pt-24 md:pt-32 pb-8 md:pb-12 px-6 md:px-12 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/[0.06] blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-24 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 lg:gap-24 mb-16 md:mb-24">
           {/* Column 1: Brand */}
-          <div className="space-y-10">
-            <a href="#home" className="text-4xl font-black tracking-tighter uppercase">
-              <span className="text-primary">Siz</span> <span className="italic">Detailing</span>
+          <div className="space-y-6 md:space-y-8">
+            <a href="#home" className="text-3xl md:text-4xl font-black tracking-tighter uppercase font-display inline-block">
+              <span className="text-primary">Siz</span> <span className="italic text-gradient">Detailing</span>
             </a>
-            <p className="text-white/30 text-lg leading-relaxed font-light">
+            <p className="text-white/20 text-sm md:text-base leading-relaxed font-light">
               "Perfecțiunea are un nume." — Experiență de detailing auto la cel mai înalt nivel în Rm. Vâlcea.
             </p>
-            <div className="flex gap-6">
+            <div className="flex gap-3 md:gap-4">
               {[
                 { icon: Facebook, href: '#' },
                 { icon: Instagram, href: '#' },
-                { icon: TikTokIcon, href: '#' }
+                { icon: TikTokIcon, href: '#' },
               ].map((social, i) => (
-                <a 
+                <a
                   key={i}
-                  href={social.href} 
-                  className="w-14 h-14 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center hover:bg-primary hover:border-primary hover:shadow-[0_0_30px_rgba(255,0,0,0.4)] transition-all duration-500 group"
+                  href={social.href}
+                  className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:bg-primary hover:border-primary hover:shadow-glow-sm transition-all duration-500 group"
                 >
-                  <social.icon className="text-white/40 group-hover:text-white transition-colors w-6 h-6" />
+                  <social.icon className="text-white/30 group-hover:text-white transition-colors w-4 h-4 md:w-5 md:h-5" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Column 2: Navigation */}
-          <div className="space-y-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Navigare</h3>
-            <ul className="space-y-6">
+          <div className="space-y-6 md:space-y-8">
+            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Navigare</h3>
+            <ul className="space-y-3 md:space-y-4">
               {['Acasă', 'Servicii', 'Galerie', 'Despre', 'Contact'].map((item) => (
                 <li key={item}>
-                  <a 
-                    href={`#${item.toLowerCase()}`} 
-                    className="text-white/40 hover:text-white transition-all text-sm uppercase tracking-widest font-bold"
+                  <a
+                    href={`#${item.toLowerCase()}`}
+                    className="text-white/25 hover:text-white/70 transition-all text-xs md:text-sm uppercase tracking-widest font-bold"
                   >
                     {item}
                   </a>
@@ -65,37 +64,41 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Contact */}
-          <div className="space-y-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.5em] text-primary">Contact</h3>
-            <ul className="space-y-8">
-              <li className="flex items-center gap-6 group">
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-all">
-                  <Phone className="text-primary w-5 h-5" />
+          <div className="space-y-6 md:space-y-8">
+            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Contact</h3>
+            <ul className="space-y-5 md:space-y-6">
+              <li className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary/10 transition-all">
+                  <Phone className="text-primary w-4 h-4" />
                 </div>
-                <a href="tel:0761639988" className="text-white/40 group-hover:text-white transition-all font-bold tracking-widest">0761 639 988</a>
+                <a href="tel:0761639988" className="text-white/30 group-hover:text-white/70 transition-all font-bold tracking-wider text-sm">
+                  0761 639 988
+                </a>
               </li>
-              <li className="flex items-center gap-6 group">
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-all">
-                  <MapPin className="text-primary w-5 h-5" />
+              <li className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary/10 transition-all">
+                  <MapPin className="text-primary w-4 h-4" />
                 </div>
-                <span className="text-white/40 group-hover:text-white transition-all font-bold tracking-widest">Rm. Vâlcea, România</span>
+                <span className="text-white/30 group-hover:text-white/70 transition-all font-bold tracking-wider text-sm">
+                  Rm. Vâlcea, România
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-white/20 text-[10px] uppercase tracking-[0.3em] font-black">
-            © {currentYear} Siz Detailing. Toate drepturile rezervate.
+        <div className="pt-8 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
+          <div className="text-white/15 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold">
+            &copy; {currentYear} Siz Detailing. Toate drepturile rezervate.
           </div>
-          <div className="text-white/20 text-[10px] uppercase tracking-[0.3em] font-black">
+          <div className="text-white/15 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold">
             Crafted by{' '}
-            <a 
-              href="https://vixonlab.com" 
-              target="_blank" 
+            <a
+              href="https://vixonlab.com"
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-white transition-colors"
+              className="text-primary/60 hover:text-primary transition-colors"
             >
               VixonLab
             </a>

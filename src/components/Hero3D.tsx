@@ -3,15 +3,21 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Stars, Grid, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
+/* ═══════════════════════════════════════════
+   FLOATING PARTICLE FIELD — more visible, dramatic
+   ═══════════════════════════════════════════ */
 function HydrophobicField({ count }: { count: number }) {
   const ref = useRef<THREE.Points>(null);
 
   const particles = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      pos[i * 3]     = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 20;
+      const radius = 5 + Math.random() * 15;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.random() * Math.PI;
+      pos[i * 3]     = radius * Math.sin(phi) * Math.cos(theta);
+      pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) - 2;
+      pos[i * 3 + 2] = radius * Math.cos(phi);
     }
     return pos;
   }, [count]);
@@ -19,8 +25,47 @@ function HydrophobicField({ count }: { count: number }) {
   useFrame((state) => {
     if (!ref.current) return;
     const time = state.clock.getElapsedTime();
-    ref.current.rotation.y = time * 0.05;
-    ref.current.position.y = Math.sin(time * 0.3) * 0.1;
+    ref.current.rotation.y = time * 0.03;
+    ref.current.rotation.x = Math.sin(time * 0.15) * 0.05;
+    ref.current.position.y = Math.sin(time * 0.2) * 0.3;
+  });
+
+  return (
+    <Points ref={ref} positions={particles} stride={3} frustumCulled={false}>
+      <PointMaterial
+        transparent
+        color="#FF2222"
+        size={0.02}
+        sizeAttenuation={true}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        opacity={0.4}
+      />
+    </Points>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   SECONDARY PARTICLES — white dust
+   ═══════════════════════════════════════════ */
+function DustField({ count }: { count: number }) {
+  const ref = useRef<THREE.Points>(null);
+
+  const particles = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      pos[i * 3]     = (Math.random() - 0.5) * 30;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 30;
+    }
+    return pos;
+  }, [count]);
+
+  useFrame((state) => {
+    if (!ref.current) return;
+    const time = state.clock.getElapsedTime();
+    ref.current.rotation.y = time * 0.015;
+    ref.current.position.y = Math.sin(time * 0.1) * 0.5;
   });
 
   return (
@@ -28,78 +73,127 @@ function HydrophobicField({ count }: { count: number }) {
       <PointMaterial
         transparent
         color="#ffffff"
-        size={0.015}
+        size={0.008}
         sizeAttenuation={true}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
-        opacity={0.25}
+        opacity={0.15}
       />
     </Points>
   );
 }
 
+/* ═══════════════════════════════════════════
+   DETAILING BAY — animated grid floor
+   ═══════════════════════════════════════════ */
 function DetailingBay() {
   const gridRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
     if (!gridRef.current) return;
-    gridRef.current.position.z = (state.clock.getElapsedTime() * 0.5) % 1;
+    gridRef.current.position.z = (state.clock.getElapsedTime() * 0.3) % 2;
   });
 
   return (
-    <group position={[0, -3.5, 0]}>
+    <group position={[0, -4, 0]}>
       <group ref={gridRef}>
         <Grid
           infiniteGrid
-          fadeDistance={50}
-          fadeStrength={5}
-          sectionSize={2}
+          fadeDistance={40}
+          fadeStrength={3}
+          sectionSize={3}
           sectionColor="#FF0000"
-          sectionThickness={0.5}
+          sectionThickness={0.3}
           cellSize={1}
-          cellColor="#050505"
-          cellThickness={0.2}
+          cellColor="#110011"
+          cellThickness={0.1}
         />
       </group>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial
-          color="#000000"
-          metalness={1}
-          roughness={0.1}
+          color="#050510"
+          metalness={0.9}
+          roughness={0.15}
           transparent
-          opacity={0.95}
+          opacity={0.9}
         />
       </mesh>
     </group>
   );
 }
 
+/* ═══════════════════════════════════════════
+   STUDIO LIGHTS — cinematic lighting
+   ═══════════════════════════════════════════ */
 function StudioLights() {
   return (
     <group>
+      {/* Main overhead strip */}
       <rectAreaLight
-        width={15}
-        height={0.2}
-        intensity={5}
+        width={20}
+        height={0.3}
+        intensity={8}
         color="#ffffff"
-        position={[0, 8, -5]}
+        position={[0, 10, -5]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
+      {/* Red accent from above */}
       <rectAreaLight
-        width={15}
-        height={0.2}
-        intensity={3}
+        width={12}
+        height={0.5}
+        intensity={5}
         color="#FF0000"
-        position={[0, 8, 0]}
+        position={[0, 10, 2]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
-      <pointLight position={[10, 5, 10]} intensity={0.5} color="#ffffff" />
-      <pointLight position={[-10, 5, 10]} intensity={0.8} color="#FF0000" />
+      {/* Side fills */}
+      <pointLight position={[15, 5, 10]} intensity={0.8} color="#ffffff" distance={30} />
+      <pointLight position={[-15, 5, 10]} intensity={1.2} color="#FF0000" distance={25} />
+      {/* Purple accent for depth */}
+      <pointLight position={[0, 3, -15]} intensity={0.6} color="#4400AA" distance={30} />
     </group>
   );
 }
 
+/* ═══════════════════════════════════════════
+   CSS PARTICLES — mobile fallback (no Three.js)
+   ═══════════════════════════════════════════ */
+function CSSParticles() {
+  const particles = useMemo(() => {
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      size: 1 + Math.random() * 2,
+      duration: 8 + Math.random() * 12,
+      delay: Math.random() * 10,
+      opacity: 0.15 + Math.random() * 0.3,
+    }));
+  }, []);
+
+  return (
+    <div className="css-particles">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="css-particle"
+          style={{
+            left: p.left,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`,
+            opacity: p.opacity,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   MAIN HERO 3D COMPONENT
+   ═══════════════════════════════════════════ */
 export default function Hero3D() {
   const [isMobile, setIsMobile] = useState(
     () => typeof window !== 'undefined' && window.innerWidth < 768
@@ -112,55 +206,50 @@ export default function Hero3D() {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none bg-[#010101]">
-      {/* Dark luxury car — very subtle, gives the "detailing studio" vibe */}
+    <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* Ambient background gradients */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 50% 70% at 50% -10%, rgba(255,0,0,0.12) 0%, rgba(255,0,0,0.04) 40%, transparent 65%),
+            radial-gradient(ellipse 40% 40% at 80% 80%, rgba(60,0,100,0.08) 0%, transparent 50%),
+            radial-gradient(ellipse 50% 30% at 20% 90%, rgba(255,0,0,0.06) 0%, transparent 50%)
+          `,
+        }}
+      />
+
+      {/* Car background — subtle */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1603584173870-7f3118020352?q=80&w=1920&auto=format&fit=crop')`,
-          opacity: 0.07,
-          filter: 'saturate(0) contrast(1.8)',
+          opacity: 0.05,
+          filter: 'saturate(0) contrast(1.5)',
         }}
       />
 
-      {/* Red spotlight beam from top */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 45% 65% at 50% -5%, rgba(255,0,0,0.14) 0%, rgba(255,0,0,0.05) 45%, transparent 70%)',
-        }}
-      />
+      {/* 3D Scene (desktop only) or CSS particles (mobile) */}
+      {isMobile ? (
+        <CSSParticles />
+      ) : (
+        <Canvas dpr={[1, 1.5]}>
+          <PerspectiveCamera makeDefault position={[0, 2, 12]} fov={45} />
+          <color attach="background" args={['#030305']} />
+          <ambientLight intensity={0.08} />
+          <StudioLights />
+          <DetailingBay />
+          <HydrophobicField count={4000} />
+          <DustField count={2000} />
+          <Stars radius={80} depth={50} count={2500} factor={5} saturation={0} fade speed={0.2} />
+          <fog attach="fog" args={['#030305', 8, 35]} />
+        </Canvas>
+      )}
 
-      {/* Ambient floor glow */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 100% 35% at 50% 100%, rgba(255,0,0,0.07) 0%, transparent 60%)',
-        }}
-      />
-
-      {/* Three.js scene */}
-      <Canvas dpr={isMobile ? [1, 1] : [1, 1.5]}>
-        <PerspectiveCamera makeDefault position={[0, 2, 10]} fov={45} />
-        <color attach="background" args={['#010101']} />
-        <ambientLight intensity={0.1} />
-        <StudioLights />
-        <DetailingBay />
-        <HydrophobicField count={isMobile ? 500 : 3000} />
-        {!isMobile && (
-          <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.3} />
-        )}
-        <fog attach="fog" args={['#010101', 5, 30]} />
-      </Canvas>
-
-      {/* Top edge fade */}
-      <div className="absolute top-0 left-0 right-0 h-1/4 bg-gradient-to-b from-[#010101] to-transparent" />
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-[#010101] to-transparent" />
-      {/* Side vignettes */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#010101]/60 via-transparent to-[#010101]/60" />
+      {/* Edge fades */}
+      <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-[#030305] via-[#030305]/60 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-[#030305] via-[#030305]/70 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/50 via-transparent to-[#030305]/50" />
     </div>
   );
 }

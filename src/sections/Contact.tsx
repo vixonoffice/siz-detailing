@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MapPin } from 'lucide-react';
-import MagneticButton from '@/components/MagneticButton';
+import { Phone, MapPin, ArrowRight } from 'lucide-react';
 
 const services = [
   'Spălare Exterior Premium',
@@ -31,15 +30,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 bg-[#020202] relative overflow-hidden">
-      {/* Section divider */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full pointer-events-none" />
+    <section id="contact" className="py-24 md:py-40 px-6 md:px-12 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/[0.04] blur-[200px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-purple/8 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Info Side */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -47,24 +44,24 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="text-primary font-black uppercase tracking-[0.5em] text-xs mb-6 block">Ești gata?</span>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none mb-8 md:mb-12">
-              Hai să <br />
-              <span className="text-primary italic text-glow">Lucrăm</span>
+            <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] md:text-xs mb-5 md:mb-6 block">Ești gata?</span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-6 md:mb-10 font-display">
+              <span className="text-gradient">Hai să</span> <br />
+              <span className="text-gradient-red italic text-glow">Lucrăm</span>
             </h2>
-            <p className="text-white/40 text-lg md:text-xl font-light mb-16 max-w-md leading-relaxed">
+            <p className="text-white/30 text-base md:text-lg font-light mb-10 md:mb-16 max-w-md leading-relaxed">
               Programează-te astăzi și oferă-i mașinii tale tratamentul pe care îl merită cu adevărat.
             </p>
 
-            <div className="space-y-8 md:space-y-10">
+            <div className="space-y-6 md:space-y-8">
               {/* Phone */}
-              <a href="tel:0761639988" className="flex items-center gap-6 md:gap-8 group">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[2rem] bg-white/[0.04] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:shadow-[0_0_50px_rgba(255,0,0,0.3)] transition-all duration-700">
-                  <Phone className="text-primary group-hover:text-white w-6 h-6 md:w-8 md:h-8 transition-colors" />
+              <a href="tel:0761639988" className="flex items-center gap-5 md:gap-6 group">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:shadow-glow transition-all duration-700">
+                  <Phone className="text-primary group-hover:text-white w-5 h-5 md:w-6 md:h-6 transition-colors" />
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black mb-2">Telefon Direct</div>
-                  <div className="text-2xl md:text-3xl font-black tracking-widest text-white/40 group-hover:text-white transition-colors uppercase">
+                  <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/15 font-bold mb-1">Telefon Direct</div>
+                  <div className="text-xl md:text-2xl font-black tracking-widest text-white/40 group-hover:text-white transition-colors uppercase">
                     0761 639 988
                   </div>
                 </div>
@@ -75,27 +72,27 @@ export default function Contact() {
                 href="https://wa.me/40761639988?text=Bun%C4%83%20ziua!%20A%C8%99%20dori%20s%C4%83%20programez%20o%20%C8%99edin%C8%9B%C4%83%20de%20detailing."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-6 md:gap-8 group"
+                className="flex items-center gap-5 md:gap-6 group"
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[2rem] bg-white/[0.04] border border-white/[0.06] flex items-center justify-center group-hover:bg-[#25D366] group-hover:border-[#25D366] group-hover:shadow-[0_0_50px_rgba(37,211,102,0.3)] transition-all duration-700">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-[#25D366] group-hover:border-[#25D366] group-hover:shadow-[0_0_40px_rgba(37,211,102,0.3)] transition-all duration-700">
                   <WhatsAppIcon />
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black mb-2">WhatsApp</div>
-                  <div className="text-2xl md:text-3xl font-black tracking-widest text-white/40 group-hover:text-white transition-colors uppercase">
+                  <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/15 font-bold mb-1">WhatsApp</div>
+                  <div className="text-xl md:text-2xl font-black tracking-widest text-white/40 group-hover:text-white transition-colors uppercase">
                     Scrie-ne Acum
                   </div>
                 </div>
               </a>
 
               {/* Location */}
-              <div className="flex items-center gap-6 md:gap-8 group">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[2rem] bg-white/[0.04] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary/10 group-hover:border-primary/30 transition-all duration-700">
-                  <MapPin className="text-primary w-6 h-6 md:w-8 md:h-8" />
+              <div className="flex items-center gap-5 md:gap-6 group">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-700">
+                  <MapPin className="text-primary w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black mb-2">Locație Studio</div>
-                  <div className="text-2xl md:text-3xl font-black tracking-widest text-white/40 uppercase">Rm. Vâlcea, RO</div>
+                  <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/15 font-bold mb-1">Locație Studio</div>
+                  <div className="text-xl md:text-2xl font-black tracking-widest text-white/40 uppercase">Rm. Vâlcea, RO</div>
                 </div>
               </div>
             </div>
@@ -109,43 +106,51 @@ export default function Contact() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-primary/5 blur-[100px] rounded-full opacity-50" />
+            {/* Glow behind form */}
+            <div className="absolute -inset-6 bg-primary/[0.03] blur-[80px] rounded-full" />
+
             <form
               onSubmit={handleSubmit}
-              className="relative bg-[#0A0A0A] border border-white/[0.06] p-10 md:p-14 lg:p-16 rounded-[3rem] md:rounded-[4rem] space-y-8 md:space-y-10"
+              className="relative glass-card p-8 md:p-12 lg:p-14 rounded-2xl md:rounded-[2.5rem] space-y-5 md:space-y-7"
             >
-              <div className="space-y-3">
-                <label className="text-[10px] uppercase tracking-[0.5em] text-white/20 font-black ml-2">
+              {/* Form title */}
+              <div className="mb-2 md:mb-4">
+                <h3 className="text-lg md:text-xl font-black text-white/80 uppercase tracking-wide font-display">Programare Rapidă</h3>
+                <p className="text-white/20 text-xs md:text-sm mt-1">Completează formularul și te contactăm noi.</p>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold ml-1">
                   Nume Complet
                 </label>
                 <input
                   required
                   type="text"
                   placeholder="Ex: Andrei Popescu"
-                  className="w-full bg-white/[0.04] border border-white/[0.06] rounded-2xl md:rounded-[2rem] px-6 md:px-8 py-5 md:py-6 focus:outline-none focus:border-primary/40 focus:bg-white/[0.06] transition-all text-white font-bold text-base md:text-lg placeholder:text-white/10"
+                  className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl md:rounded-2xl px-5 md:px-6 py-4 md:py-5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(255,0,0,0.05)] transition-all text-white font-bold text-sm md:text-base placeholder:text-white/10"
                 />
               </div>
 
-              <div className="space-y-3">
-                <label className="text-[10px] uppercase tracking-[0.5em] text-white/20 font-black ml-2">
+              <div className="space-y-2">
+                <label className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold ml-1">
                   Telefon
                 </label>
                 <input
                   required
                   type="tel"
                   placeholder="07XX XXX XXX"
-                  className="w-full bg-white/[0.04] border border-white/[0.06] rounded-2xl md:rounded-[2rem] px-6 md:px-8 py-5 md:py-6 focus:outline-none focus:border-primary/40 focus:bg-white/[0.06] transition-all text-white font-bold text-base md:text-lg placeholder:text-white/10"
+                  className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl md:rounded-2xl px-5 md:px-6 py-4 md:py-5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(255,0,0,0.05)] transition-all text-white font-bold text-sm md:text-base placeholder:text-white/10"
                 />
               </div>
 
-              <div className="space-y-3">
-                <label className="text-[10px] uppercase tracking-[0.5em] text-white/20 font-black ml-2">
+              <div className="space-y-2">
+                <label className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold ml-1">
                   Serviciu Dorit
                 </label>
                 <select
                   defaultValue=""
                   required
-                  className="w-full bg-white/[0.04] border border-white/[0.06] rounded-2xl md:rounded-[2rem] px-6 md:px-8 py-5 md:py-6 focus:outline-none focus:border-primary/40 focus:bg-white/[0.06] transition-all text-white/40 font-bold text-base md:text-lg appearance-none"
+                  className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl md:rounded-2xl px-5 md:px-6 py-4 md:py-5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.05] transition-all text-white/30 font-bold text-sm md:text-base appearance-none"
                 >
                   <option value="" disabled>
                     Alege Serviciul...
@@ -158,13 +163,20 @@ export default function Contact() {
                 </select>
               </div>
 
-              <MagneticButton
+              <button
                 type="submit"
-                className="w-full py-6 md:py-8 text-[10px] font-black uppercase tracking-[0.5em] rounded-2xl md:rounded-[2rem]"
                 disabled={isSubmitting}
+                className="w-full py-4 md:py-5 bg-primary hover:bg-primary-light text-white font-black text-[10px] md:text-xs uppercase tracking-[0.4em] rounded-xl md:rounded-2xl transition-all duration-500 glow-pulse hover:shadow-glow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? 'Se procesează...' : 'Trimite Cererea'}
-              </MagneticButton>
+                {isSubmitting ? (
+                  'Se procesează...'
+                ) : (
+                  <>
+                    Trimite Cererea
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </button>
             </form>
           </motion.div>
         </div>

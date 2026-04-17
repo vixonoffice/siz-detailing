@@ -32,17 +32,84 @@ const steps = [
   },
 ];
 
-export default function ProcessSection() {
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.innerWidth < 1024
-  );
+/* ═══════════════════════════════════════════
+   MOBILE: Vertical scroll cards
+   ═══════════════════════════════════════════ */
+function MobileProcess() {
+  return (
+    <section className="py-24 px-6 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/[0.04] blur-[150px] rounded-full pointer-events-none" />
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+      <div className="max-w-lg mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mb-16"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-8 h-[2px] bg-gradient-to-r from-primary to-transparent" />
+            <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px]">Procesul Nostru</span>
+          </div>
+          <h2 className="text-4xl font-black text-gradient uppercase tracking-tighter leading-[0.85] font-display">
+            Etapele <br />
+            <span className="text-gradient-red italic">Perfecțiunii</span>
+          </h2>
+        </motion.div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-primary/30 via-primary/10 to-transparent" />
+
+          <div className="space-y-12">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="relative pl-16"
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-[14px] top-2 w-[18px] h-[18px] rounded-full border-2 border-primary/50 bg-background flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
+                </div>
+
+                {/* Card */}
+                <div className="glass-card p-6 rounded-2xl overflow-hidden">
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-5">
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-70" />
+                    <div className="absolute top-3 left-3 text-[10px] font-black text-primary/80 uppercase tracking-[0.3em] bg-background/60 backdrop-blur-md px-3 py-1 rounded-full border border-primary/20">
+                      Phase {step.number}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-black text-white uppercase tracking-tight mb-2 font-display">{step.title}</h3>
+                  <p className="text-white/40 text-sm font-light leading-relaxed">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   DESKTOP: Horizontal scroll
+   ═══════════════════════════════════════════ */
+function DesktopProcess() {
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!triggerRef.current) return;
@@ -56,38 +123,38 @@ export default function ProcessSection() {
         scrollTrigger: {
           trigger: triggerRef.current,
           pin: true,
-          scrub: isMobile ? 0.5 : 1,
-          // No snap on mobile — prevents the "replay" glitch on touch
-          ...(isMobile ? {} : { snap: 1 / (horizontalSections.length - 1) }),
+          scrub: 1,
+          snap: 1 / (horizontalSections.length - 1),
           start: 'top top',
-          end: isMobile ? '+=2500' : '+=3000',
+          end: '+=3000',
           invalidateOnRefresh: true,
         },
       });
     }, triggerRef);
 
     return () => ctx.revert();
-  }, [isMobile]);
+  }, []);
 
   return (
-    <div className="overflow-hidden bg-transparent">
+    <div className="overflow-hidden">
       <div ref={triggerRef} className="relative">
         <div className="flex flex-nowrap w-[400vw]">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="process-step h-screen w-screen flex items-center justify-center px-6 md:px-12 lg:px-24 relative overflow-hidden"
+              className="process-step h-screen w-screen flex items-center justify-center px-12 lg:px-24 relative overflow-hidden"
             >
               {/* Giant background number */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40vw] lg:text-[35vw] font-black text-white/[0.015] pointer-events-none select-none italic tracking-tighter">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[35vw] font-black text-white/[0.012] pointer-events-none select-none italic tracking-tighter font-display">
                 {step.number}
               </div>
 
-              {/* ── Content: stack on mobile, side-by-side on desktop ── */}
-              <div className="max-w-[1800px] w-full flex flex-col lg:grid lg:grid-cols-[55%_40%] gap-6 lg:gap-24 items-center relative z-10">
+              {/* Ambient glow */}
+              <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-primary/[0.04] blur-[120px] rounded-full pointer-events-none" />
+
+              <div className="max-w-[1800px] w-full grid grid-cols-[55%_40%] gap-24 items-center relative z-10">
                 {/* Text */}
                 <div className="relative">
-                  <div className="absolute -inset-20 bg-primary/5 blur-[100px] pointer-events-none" />
                   <motion.div
                     initial={{ opacity: 0, x: -80 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -95,36 +162,52 @@ export default function ProcessSection() {
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className="relative"
                   >
-                    <div className="flex items-center gap-4 mb-4 lg:mb-6">
-                      <div className="w-8 lg:w-12 h-[1px] bg-primary" />
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-[2px] bg-gradient-to-r from-primary to-transparent" />
                       <span className="text-primary font-black uppercase tracking-[0.5em] text-[10px]">
                         Phase {step.number}
                       </span>
                     </div>
-                    <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-4 lg:mb-8">
+                    <h2 className="text-6xl lg:text-8xl font-black text-gradient uppercase tracking-tighter leading-[0.9] mb-8 font-display">
                       {step.title}
                     </h2>
-                    <p className="text-white/60 text-base md:text-xl lg:text-2xl font-light leading-relaxed max-w-xl drop-shadow-lg">
+                    <p className="text-white/50 text-xl lg:text-2xl font-light leading-relaxed max-w-xl">
                       {step.description}
                     </p>
+
+                    {/* Step indicator */}
+                    <div className="flex items-center gap-3 mt-12">
+                      {steps.map((_, i) => (
+                        <div
+                          key={i}
+                          className={`h-[3px] rounded-full transition-all duration-500 ${
+                            i === index ? 'w-12 bg-primary shadow-glow-sm' : 'w-6 bg-white/10'
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </motion.div>
                 </div>
 
                 {/* Image */}
                 <motion.div
-                  initial={{ scale: 1.2, opacity: 0, rotateY: 20 }}
+                  initial={{ scale: 1.15, opacity: 0, rotateY: 15 }}
                   whileInView={{ scale: 1, opacity: 1, rotateY: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full aspect-[16/10] lg:aspect-video rounded-2xl lg:rounded-[4rem] overflow-hidden group"
+                  className="relative aspect-video rounded-[3rem] overflow-hidden group"
                 >
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
+                    className="w-full h-full object-cover transition-all duration-1000 scale-110 group-hover:scale-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#010101] via-transparent to-transparent opacity-60" />
-                  <div className="absolute inset-0 border border-white/5 rounded-2xl lg:rounded-[4rem] pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-50" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-background/30 to-transparent" />
+                  <div className="absolute inset-0 border border-white/[0.06] rounded-[3rem] pointer-events-none" />
+
+                  {/* Corner glow */}
+                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 </motion.div>
               </div>
             </div>
@@ -133,4 +216,18 @@ export default function ProcessSection() {
       </div>
     </div>
   );
+}
+
+export default function ProcessSection() {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth < 1024
+  );
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  return isMobile ? <MobileProcess /> : <DesktopProcess />;
 }
