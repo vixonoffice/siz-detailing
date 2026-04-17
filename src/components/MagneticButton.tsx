@@ -43,7 +43,7 @@ export default function MagneticButton({
       className={cn(
         'relative px-8 py-4 rounded-xl font-bold transition-all duration-300 group overflow-hidden',
         variant === 'primary' 
-          ? 'bg-primary text-white shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)]' 
+          ? 'bg-primary text-white shadow-[0_0_20px_rgba(255,0,0,0.3)] hover:shadow-[0_0_30px_rgba(255,0,0,0.5)]'
           : 'bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10',
         className
       )}
