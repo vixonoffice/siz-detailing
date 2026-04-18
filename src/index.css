@@ -11,8 +11,13 @@
     --glow: rgba(255, 0, 0, 0.4);
   }
 
+  body, html {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
-    @apply bg-[#030305] text-white selection:bg-primary/30 selection:text-white overflow-x-hidden;
+    @apply bg-[#030305] text-white selection:bg-primary/30 selection:text-white;
     font-family: 'Inter', 'Outfit', sans-serif;
   }
 
@@ -89,24 +94,25 @@
   .aurora::after {
     content: '';
     position: absolute;
-    width: 150%;
+    width: 100%;
     height: 60%;
     border-radius: 50%;
     filter: blur(120px);
     opacity: 0.4;
     animation: aurora 15s ease-in-out infinite alternate;
+    overflow: hidden;
   }
 
   .aurora::before {
     background: radial-gradient(ellipse, rgba(255, 0, 0, 0.12), transparent 60%);
     top: -30%;
-    left: -25%;
+    left: 0;
   }
 
   .aurora::after {
     background: radial-gradient(ellipse, rgba(80, 0, 120, 0.08), transparent 60%);
     bottom: -20%;
-    right: -25%;
+    right: 0;
     animation-delay: -7s;
     animation-direction: alternate-reverse;
   }
@@ -390,21 +396,33 @@
    ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
   .mesh-gradient {
-    animation: none;
+    animation: none !important;
     background:
-      radial-gradient(ellipse 80% 50% at 50% 30%, rgba(120, 0, 30, 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(5, 5, 15, 1) 0%, rgba(3, 3, 5, 1) 100%);
+      radial-gradient(ellipse 80% 50% at 50% 30%, rgba(120, 0, 30, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(5, 5, 15, 1) 0%, rgba(3, 3, 5, 1) 100%) !important;
+  }
+
+  .aurora {
+    display: none !important;
   }
 
   .aurora::before,
   .aurora::after {
-    animation-duration: 25s;
-    filter: blur(80px);
-    opacity: 0.3;
+    animation: none !important;
+    display: none !important;
   }
 
   .shimmer::after {
     animation: none;
     display: none;
+  }
+
+  .text-glow,
+  .text-glow-sm {
+    text-shadow: none !important;
+  }
+
+  .glow-pulse {
+    animation: none !important;
   }
 }
