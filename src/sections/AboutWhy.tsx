@@ -83,9 +83,9 @@ export default function AboutWhy() {
               <div className="absolute -inset-8 bg-primary/8 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               <div className="w-full h-full overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-white/[0.06] relative">
                 <img
-                  src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop"
-                  alt="Detailing"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                  src="/images/brand.jpeg"
+                  alt="Siz Detailing Rm. Vâlcea"
+                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
                 {/* Overlay glow on hover */}

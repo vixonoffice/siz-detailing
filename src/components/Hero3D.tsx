@@ -223,7 +223,7 @@ export default function Hero3D() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1603584173870-7f3118020352?q=80&w=1920&auto=format&fit=crop')`,
+          backgroundImage: `url('/images/brand.jpeg')`,
           opacity: 0.05,
           filter: 'saturate(0) contrast(1.5)',
         }}

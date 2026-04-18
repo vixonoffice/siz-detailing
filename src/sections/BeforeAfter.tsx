@@ -90,19 +90,19 @@ function BeforeAfterSlider({ beforeImage, afterImage, label }: BeforeAfterSlider
 
 const comparisons = [
   {
-    before: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=1000&auto=format&fit=crop',
-    after: 'https://images.unsplash.com/photo-1603584173870-7f3118020352?q=80&w=1000&auto=format&fit=crop',
-    label: 'Exterior Detailing',
+    before: '/images/interior-murdar.jpeg',
+    after: '/images/interior-curat.jpeg',
+    label: 'Interior Detailing',
   },
   {
-    before: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop',
-    after: 'https://images.unsplash.com/photo-1552519507-811f4a2916ad?q=80&w=1000&auto=format&fit=crop',
-    label: 'Paint Correction',
+    before: '/images/bord-murdar.jpeg',
+    after: '/images/bord-curat.jpeg',
+    label: 'Bord & Plastice',
   },
   {
-    before: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop',
-    after: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1000&auto=format&fit=crop',
-    label: 'Ceramic Coating',
+    before: '/images/usa-murdara.jpeg',
+    after: '/images/usa-curata.jpeg',
+    label: 'Uși Interior',
   },
 ];
 

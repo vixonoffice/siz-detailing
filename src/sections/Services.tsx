@@ -1,46 +1,46 @@
 import { motion } from 'framer-motion';
-import { Droplets, Armchair, Sparkles, Crown, Shield, Wrench } from 'lucide-react';
+import { Droplets, Armchair, Sparkles, Layers, Wind, Wrench } from 'lucide-react';
 
 const services = [
   {
     icon: Droplets,
-    title: 'Detailing Exterior',
-    description: 'Decontaminare chimică, corecție vopsea și protecție de lungă durată.',
-    tag: 'Elite Care',
+    title: 'Curățare Mochetă',
+    description: 'Curățare prin injecție-extracție pentru mocheta mașinii. Eliminăm murdăria adânc infiltrată și petele vechi.',
+    tag: 'Deep Clean',
     number: '01',
   },
   {
     icon: Armchair,
-    title: 'Curățare Interior',
-    description: 'Dezinfectare cu ozon și tratament special pentru piele sau alcantara.',
-    tag: 'Deep Clean',
+    title: 'Scaune & Banchetă',
+    description: 'Curățare injecție-extracție pentru scaune și banchetă textil. Rezultate vizibile de la prima ședință.',
+    tag: 'Interior Pro',
     number: '02',
   },
   {
-    icon: Shield,
-    title: 'Protecție Ceramică',
-    description: 'Tehnologie nano-ceramică pentru protecție împotriva razelor UV și zgârieturilor.',
-    tag: 'Nano Guard',
+    icon: Sparkles,
+    title: 'Degresare Plastice',
+    description: 'Tratament profesional al tuturor suprafețelor plastice din interior. Aspect curat și renovat.',
+    tag: 'Plastic Care',
     number: '03',
   },
   {
-    icon: Sparkles,
-    title: 'Corecție Vopsea',
-    description: 'Eliminăm defectele vopselei pentru un aspect de showroom impecabil.',
-    tag: 'Pro Polish',
+    icon: Layers,
+    title: 'Chedere & Portbagaj',
+    description: 'Curățare completă chedere și portbagaj. Detalii perfecte care fac diferența.',
+    tag: 'Detail Work',
     number: '04',
   },
   {
-    icon: Crown,
-    title: 'Pachet Complet',
-    description: 'Experiența supremă: detailing total interior, exterior și motor.',
-    tag: 'Full Elite',
+    icon: Wind,
+    title: 'Detailing Interior Complet',
+    description: 'Pachet complet: mochetă, scaune, plastice, chedere și portbagaj. Totul impecabil.',
+    tag: 'Full Interior',
     number: '05',
   },
   {
     icon: Wrench,
     title: 'Motor Detailing',
-    description: 'Degresare profesională și protecție pentru componentele compartimentului motor.',
+    description: 'Degresare profesională a compartimentului motor. Aspect de showroom, protecție de lungă durată.',
     tag: 'Engine Care',
     number: '06',
   },
@@ -138,6 +138,40 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        {/* Pricing CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-8 md:mt-12 relative overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.06] bg-background-card/60 backdrop-blur-sm p-8 md:p-14 lg:p-16"
+        >
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-primary/[0.05] blur-[100px] rounded-full" />
+          </div>
+          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div>
+              <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Prețuri</span>
+              <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight font-display mb-4">
+                Ofertă <span className="text-gradient-red italic">Personalizată</span>
+              </h3>
+              <p className="text-white/30 text-sm md:text-base max-w-lg leading-relaxed">
+                Prețul diferă de la mașină la mașină — dimensiune, model, grad de murdărie.
+                Trimite-ne câteva poze cu interiorul și îți facem un preț corect, pe loc.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 shrink-0">
+              <a
+                href="#contact"
+                className="group relative px-10 py-5 bg-primary hover:bg-primary-light text-white font-black uppercase tracking-[0.2em] text-sm rounded-xl transition-all duration-300 shadow-glow hover:shadow-glow-lg text-center whitespace-nowrap"
+              >
+                Cere Ofertă Gratuită →
+              </a>
+              <p className="text-white/20 text-[10px] text-center uppercase tracking-[0.2em]">Răspuns în mai puțin de 1 oră</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,14 +4,14 @@ import { Star, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const galleryImages = [
-  'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1603584173870-7f3118020352?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1552519507-811f4a2916ad?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1000&auto=format&fit=crop',
+  '/images/brand.jpeg',
+  '/images/interior-curat.jpeg',
+  '/images/bord-curat.jpeg',
+  '/images/motor-curat.jpeg',
+  '/images/usa-curata.jpeg',
+  '/images/scaun.jpeg',
+  '/images/munca1.jpeg',
+  '/images/munca2.jpeg',
 ];
 
 const testimonials = [
