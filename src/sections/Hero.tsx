@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing%20interior.%20Trimit%20poze%20cu%20ma%C8%99ina.";
 
@@ -11,8 +11,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/brand.jpeg')",
-          filter: 'grayscale(100%) contrast(1.1)',
-          opacity: 0.15,
+          opacity: 0.12,
         }}
       />
 
@@ -25,54 +24,34 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20"
       >
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           <span className="text-xs font-semibold uppercase tracking-widest text-primary">
             Rm. Vâlcea · Detailing Interior
           </span>
-        </motion.div>
+        </div>
 
         {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold font-display uppercase leading-none tracking-tighter mb-6"
-        >
+        <h1 className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold font-display uppercase leading-none tracking-tighter mb-6">
           <span className="text-white">Siz</span>
           <br />
           <span className="text-primary">Detailing</span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-base md:text-xl text-white/50 font-body mb-10 max-w-xl mx-auto leading-relaxed"
-        >
+        <p className="text-base md:text-xl text-white/50 font-body mb-10 max-w-xl mx-auto leading-relaxed">
           Detailing interior profesional pentru mașini, furgoane și TIR-uri.
           Prețul se face pe loc după poze — fără surprize.
-        </motion.p>
+        </p>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm w-full sm:w-auto justify-center">
             Trimite Poze pe WhatsApp
             <ArrowRight size={16} />
@@ -80,17 +59,13 @@ export default function Hero() {
           <a href="#results" className="btn-secondary text-sm w-full sm:w-auto justify-center">
             Vezi Rezultatele
           </a>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/20"
-      >
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/20">
         <ChevronDown size={24} />
-      </motion.div>
+      </div>
     </section>
   );
 }

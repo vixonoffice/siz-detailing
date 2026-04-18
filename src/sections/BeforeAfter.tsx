@@ -40,7 +40,7 @@ function Slider({ before, after, label }: SliderProps) {
 
         {/* Before image (clipped) */}
         <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
-          <img src={before} alt="Before" className="absolute inset-0 w-full h-full object-cover brightness-75 grayscale" loading="lazy" />
+          <img src={before} alt="Before" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
 
         {/* Labels */}
