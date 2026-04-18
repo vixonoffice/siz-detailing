@@ -52,11 +52,11 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm w-full sm:w-auto justify-center">
+          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
             Trimite Poze pe WhatsApp
             <ArrowRight size={16} />
           </a>
-          <a href="#results" className="btn-secondary text-sm w-full sm:w-auto justify-center">
+          <a href="#results" className="btn-secondary text-sm">
             Vezi Rezultatele
           </a>
         </div>
