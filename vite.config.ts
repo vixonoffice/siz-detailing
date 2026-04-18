@@ -17,11 +17,12 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-gsap': ['gsap'],
-          'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
-          'vendor-animation': ['framer-motion', '@gsap/react'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('three') || id.includes('@react-three')) return 'vendor-three';
+            if (id.includes('framer-motion') || id.includes('gsap')) return 'vendor-animation';
+            if (id.includes('react-dom') || id.includes('react/')) return 'vendor-react';
+          }
         },
       },
     },

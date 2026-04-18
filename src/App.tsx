@@ -1,5 +1,4 @@
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { useLenis } from './hooks/useLenis';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
@@ -9,8 +8,6 @@ import BeforeAfter from './sections/BeforeAfter';
 import AboutWhy from './sections/AboutWhy';
 import GalleryTestimonials from './sections/GalleryTestimonials';
 import Contact from './sections/Contact';
-import CustomCursor from './components/CustomCursor';
-import Hero3D from './components/Hero3D';
 
 function SectionDivider() {
   return (
@@ -21,7 +18,6 @@ function SectionDivider() {
 }
 
 function App() {
-  useLenis();
   const { scrollYProgress } = useScroll();
 
   const scaleX = useSpring(scrollYProgress, {
@@ -31,14 +27,11 @@ function App() {
   });
 
   return (
-    <div className="relative min-h-screen mesh-gradient text-white selection:bg-primary/30 selection:text-white md:cursor-none">
-      <CustomCursor />
-      <Hero3D />
+    <div className="relative min-h-screen bg-background text-white selection:bg-primary/30 selection:text-white">
+      {/* Ambient background */}
+      <div className="fixed inset-0 z-0 pointer-events-none ambient-bg" />
 
-      {/* Aurora ambient light */}
-      <div className="aurora fixed inset-0 z-[1]" />
-
-      <motion.div className="origin-center relative z-[2]">
+      <div className="relative z-[2]">
         <Navbar />
 
         <main>
@@ -58,10 +51,7 @@ function App() {
         </main>
 
         <Footer />
-      </motion.div>
-
-      {/* Noise overlay */}
-      <div className="bg-noise fixed inset-0 z-[100] pointer-events-none" />
+      </div>
 
       {/* Progress bar */}
       <motion.div
@@ -69,7 +59,6 @@ function App() {
         style={{
           scaleX,
           background: 'linear-gradient(90deg, #FF0000, #ff4444, #FF0000)',
-          boxShadow: '0 0 20px rgba(255,0,0,0.5), 0 0 60px rgba(255,0,0,0.2)',
         }}
       />
     </div>
