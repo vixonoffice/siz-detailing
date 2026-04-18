@@ -1,177 +1,115 @@
 import { motion } from 'framer-motion';
-import { Droplets, Armchair, Sparkles, Layers, Wind, Wrench } from 'lucide-react';
+import { Layers, Armchair, Sparkles, Wrench, Package, Wind } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20personalizat%C4%83.%20Trimit%20poze%20cu%20ma%C8%99ina.";
 
 const services = [
   {
-    icon: Droplets,
+    icon: Layers,
     title: 'Curățare Mochetă',
-    description: 'Curățare prin injecție-extracție pentru mocheta mașinii. Eliminăm murdăria adânc infiltrată și petele vechi.',
-    tag: 'Deep Clean',
-    number: '01',
+    description: 'Injecție-extracție profesională. Scoatem murdăria adânc infiltrată, petele vechi, mirosurile.',
   },
   {
     icon: Armchair,
     title: 'Scaune & Banchetă',
-    description: 'Curățare injecție-extracție pentru scaune și banchetă textil. Rezultate vizibile de la prima ședință.',
-    tag: 'Interior Pro',
-    number: '02',
+    description: 'Curățare injecție-extracție textil. Scaunele par noi după tratament.',
   },
   {
     icon: Sparkles,
     title: 'Degresare Plastice',
-    description: 'Tratament profesional al tuturor suprafețelor plastice din interior. Aspect curat și renovat.',
-    tag: 'Plastic Care',
-    number: '03',
-  },
-  {
-    icon: Layers,
-    title: 'Chedere & Portbagaj',
-    description: 'Curățare completă chedere și portbagaj. Detalii perfecte care fac diferența.',
-    tag: 'Detail Work',
-    number: '04',
+    description: 'Toate suprafețele din plastic, bord, console — curate și tratate.',
   },
   {
     icon: Wind,
-    title: 'Detailing Interior Complet',
-    description: 'Pachet complet: mochetă, scaune, plastice, chedere și portbagaj. Totul impecabil.',
-    tag: 'Full Interior',
-    number: '05',
+    title: 'Curățare Chedere',
+    description: 'Chedere tratate corect, fără urme de murdărie sau mucegai.',
+  },
+  {
+    icon: Package,
+    title: 'Curățare Portbagaj',
+    description: 'Portbagaj complet curat — mochetă, plastice, colțuri.',
   },
   {
     icon: Wrench,
-    title: 'Motor Detailing',
-    description: 'Degresare profesională a compartimentului motor. Aspect de showroom, protecție de lungă durată.',
-    tag: 'Engine Care',
-    number: '06',
+    title: 'Detailing Motor',
+    description: 'Degresare completă a compartimentului motor. Aspect impecabil, protecție inclusă.',
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-40 px-6 md:px-12 relative overflow-hidden">
-      {/* Background ambient */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/[0.03] blur-[200px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent-purple/10 blur-[150px] rounded-full pointer-events-none" />
+    <section id="services" className="py-24 md:py-32 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto">
 
-      <div className="max-w-[1800px] mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-32 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="flex items-center gap-4 mb-6 md:mb-8">
-              <div className="w-8 md:w-12 h-[2px] bg-gradient-to-r from-primary to-primary/0" />
-              <span className="text-primary font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-[10px]">Servicii Premium</span>
-            </div>
-            <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-gradient uppercase tracking-tighter leading-[0.8] font-display">
-              Standard <br />
-              <span className="text-gradient-red italic">Absolut</span>
-            </h2>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 md:mb-16"
+        >
+          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">Ce facem</span>
+          <h2 className="text-4xl md:text-6xl font-bold font-display uppercase leading-tight text-white mb-4">
+            Servicii <span className="text-primary">Detailing</span>
+          </h2>
+          <p className="text-white/40 text-base max-w-lg">
+            Lucrăm cu mașini de orice tip — autoturisme, furgoane, TIR-uri. Oricare ar fi starea interiorului.
+          </p>
+        </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="text-white/25 text-base md:text-lg font-light max-w-md text-left md:text-right"
-          >
-            Fiecare serviciu este executat cu precizie chirurgicală și materiale de top mondial.
-          </motion.p>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-          {services.map((service, index) => (
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          {services.map((s, i) => (
             <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
+              key={s.title}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: index * 0.08, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="card p-6 md:p-8 group hover:border-primary/20 transition-colors duration-300"
             >
-              <div className="group relative h-full bg-background-card/80 backdrop-blur-sm border border-white/[0.04] p-8 md:p-12 lg:p-14 flex flex-col justify-between hover:bg-background-lighter/80 transition-all duration-700 overflow-hidden min-h-[360px] md:min-h-[420px] rounded-2xl md:rounded-3xl hover-lift shimmer">
-                {/* Large number watermark */}
-                <div className="absolute -right-3 -top-6 text-[8rem] md:text-[11rem] font-black text-white/[0.015] pointer-events-none select-none leading-none italic group-hover:text-primary/[0.04] transition-colors duration-1000 font-display">
-                  {service.number}
-                </div>
-
-                {/* Hover glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[200px] bg-primary/[0.06] blur-[80px] rounded-full" />
-                </div>
-
-                <div className="relative z-10">
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white/[0.03] border border-white/[0.06] rounded-2xl md:rounded-[1.5rem] flex items-center justify-center mb-8 md:mb-12 group-hover:bg-primary/90 group-hover:border-primary group-hover:shadow-glow transition-all duration-700">
-                    <service.icon className="w-6 h-6 md:w-8 md:h-8 text-white/50 group-hover:text-white transition-colors duration-500" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-black text-white/90 uppercase tracking-tight mb-4 md:mb-6 group-hover:text-white transition-colors font-display">
-                    {service.title}
-                  </h3>
-                  <p className="text-white/30 text-sm md:text-base lg:text-lg font-light leading-relaxed mb-8 md:mb-12 group-hover:text-white/60 transition-colors duration-500">
-                    {service.description}
-                  </p>
-                </div>
-
-                <div className="relative z-10 flex items-center justify-between mt-auto">
-                  <div className="flex flex-col">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/10 mb-1">Category</span>
-                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.15em] text-primary/80 group-hover:text-primary transition-colors">{service.tag}</span>
-                  </div>
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/[0.06] flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-all duration-500">
-                    <span className="text-white/20 text-xl md:text-2xl group-hover:text-primary transition-colors">→</span>
-                  </div>
-                </div>
-
-                {/* Animated bottom accent */}
-                <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-primary/80 to-transparent w-0 group-hover:w-full transition-all duration-1000" />
-
-                {/* Corner accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div className="absolute top-0 right-0 w-[1px] h-12 bg-gradient-to-b from-primary/30 to-transparent" />
-                  <div className="absolute top-0 right-0 h-[1px] w-12 bg-gradient-to-l from-primary/30 to-transparent" />
-                </div>
+              <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors duration-300">
+                <s.icon size={20} className="text-primary" />
               </div>
+              <h3 className="text-lg font-bold font-display uppercase tracking-tight text-white mb-2">
+                {s.title}
+              </h3>
+              <p className="text-white/40 text-sm leading-relaxed">
+                {s.description}
+              </p>
             </motion.div>
           ))}
         </div>
 
         {/* Pricing CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-8 md:mt-12 relative overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.06] bg-background-card/60 backdrop-blur-sm p-8 md:p-14 lg:p-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="card p-8 md:p-12 border-primary/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
         >
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-primary/[0.05] blur-[100px] rounded-full" />
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">Prețuri</span>
+            <h3 className="text-2xl md:text-3xl font-bold font-display uppercase text-white mb-2">
+              Ofertă Personalizată
+            </h3>
+            <p className="text-white/40 text-sm max-w-md leading-relaxed">
+              Prețul diferă în funcție de mașină, dimensiune și gradul de murdărie.
+              Trimite câteva poze cu interiorul și îți facem prețul corect pe loc.
+            </p>
           </div>
-          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <div>
-              <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Prețuri</span>
-              <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight font-display mb-4">
-                Ofertă <span className="text-gradient-red italic">Personalizată</span>
-              </h3>
-              <p className="text-white/30 text-sm md:text-base max-w-lg leading-relaxed">
-                Prețul diferă de la mașină la mașină — dimensiune, model, grad de murdărie.
-                Trimite-ne câteva poze cu interiorul și îți facem un preț corect, pe loc.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4 shrink-0">
-              <a
-                href="#contact"
-                className="group relative px-10 py-5 bg-primary hover:bg-primary-light text-white font-black uppercase tracking-[0.2em] text-sm rounded-xl transition-all duration-300 shadow-glow hover:shadow-glow-lg text-center whitespace-nowrap"
-              >
-                Cere Ofertă Gratuită →
-              </a>
-              <p className="text-white/20 text-[10px] text-center uppercase tracking-[0.2em]">Răspuns în mai puțin de 1 oră</p>
-            </div>
+          <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary whitespace-nowrap">
+              Trimite Poze pe WhatsApp
+              <ArrowRight size={16} />
+            </a>
+            <span className="text-[11px] text-white/20 uppercase tracking-wider">Răspundem în mai puțin de 1 oră</span>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

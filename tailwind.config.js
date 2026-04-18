@@ -8,50 +8,19 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: "#030305",
-          lighter: "#080810",
-          lightest: "#0E0E18",
-          card: "#0A0A14",
+          DEFAULT: "#0A0A0F",
+          surface: "#111118",
+          hover: "#1A1A24",
         },
         primary: {
-          DEFAULT: "#FF0000",
-          light: "#FF3333",
-          dark: "#CC0000",
-          glow: "rgba(255, 0, 0, 0.4)",
+          DEFAULT: "#DC2626",
+          hover: "#EF4444",
         },
-        accent: {
-          red: "#E63946",
-          purple: "#2A0845",
-          dark: "#1A1A2E",
-          blue: "#0A1628",
-        }
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        display: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        display: ['Outfit', 'sans-serif'],
+        body: ['DM Sans', 'sans-serif'],
       },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'float-slow': 'float 10s ease-in-out infinite',
-        'spin-slow': 'spin 20s linear infinite',
-        'glow': 'glowPulse 3s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-      },
-      backdropBlur: {
-        xs: '2px',
-      },
-      boxShadow: {
-        'glow-sm': '0 0 15px rgba(255, 0, 0, 0.15)',
-        'glow': '0 0 30px rgba(255, 0, 0, 0.2), 0 0 60px rgba(255, 0, 0, 0.1)',
-        'glow-lg': '0 0 60px rgba(255, 0, 0, 0.3), 0 0 120px rgba(255, 0, 0, 0.15)',
-        'glass': '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-      }
     },
   },
   plugins: [],

@@ -1,129 +1,109 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { name: 'Acasă', href: '#home' },
   { name: 'Servicii', href: '#services' },
-  { name: 'Galerie', href: '#gallery' },
+  { name: 'Rezultate', href: '#results' },
   { name: 'Despre', href: '#about' },
+  { name: 'Galerie', href: '#gallery' },
   { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [isMobileMenuOpen]);
+  }, [open]);
 
   return (
-    <nav
-      className={cn(
-        'fixed top-0 left-0 right-0 z-[100] transition-all duration-700 py-6 md:py-8 px-6 md:px-12 lg:px-24',
-        isScrolled
-          ? 'py-4 md:py-5 bg-background/60 backdrop-blur-2xl border-b border-white/[0.04]'
-          : 'bg-transparent'
-      )}
+    <header
+      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${
+        scrolled ? 'bg-background/90 border-b border-white/[0.06]' : 'bg-transparent'
+      }`}
+      style={scrolled ? { backdropFilter: 'blur(12px)' } : undefined}
     >
-      <div className="max-w-[1800px] mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 md:h-18 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-baseline gap-1 group relative z-50">
-          <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white group-hover:text-primary transition-colors font-display">
+        <a href="#home" className="flex items-center gap-1 z-50">
+          <span className="text-2xl font-bold font-display text-white uppercase tracking-tight">
             Siz
           </span>
-          <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 group-hover:shadow-glow-sm transition-all duration-300" />
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-0.5" />
         </a>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-10 xl:gap-14">
+        {/* Desktop links */}
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/25 hover:text-white transition-all duration-300 relative group"
+              className="text-xs font-semibold uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-200"
             >
               {link.name}
-              <span className="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-gradient-to-r from-primary to-primary/0 transition-all duration-500 group-hover:w-full" />
             </a>
           ))}
           <a
-            href="#contact"
-            className="group relative px-8 py-3"
+            href="https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-xs py-2.5 px-5"
           >
-            <div className="absolute inset-0 bg-white/[0.03] rounded-full border border-white/[0.08] group-hover:bg-primary group-hover:border-primary group-hover:shadow-glow transition-all duration-500" />
-            <span className="relative z-10 text-[10px] font-bold uppercase tracking-[0.25em] text-white/60 group-hover:text-white transition-colors">
-              Rezervă Acum
-            </span>
+            Cere Ofertă
           </a>
-        </div>
+        </nav>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile toggle */}
         <button
-          className="lg:hidden text-white relative z-50 w-10 h-10 flex items-center justify-center"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden z-50 w-10 h-10 flex items-center justify-center text-white"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
         >
-          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-background/98 backdrop-blur-2xl z-40 lg:hidden flex flex-col items-center justify-center"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            {/* Ambient glow */}
-            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/[0.06] blur-[100px] rounded-full pointer-events-none" />
-
-            <div className="flex flex-col items-center gap-6">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.08, duration: 0.5 }}
-                  className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white/60 hover:text-white transition-colors font-display"
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-              <motion.a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.08, duration: 0.5 }}
-                className="mt-4 w-64 text-center px-8 py-4 bg-primary text-white font-black uppercase tracking-wider rounded-xl shadow-glow text-sm"
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="text-2xl font-bold font-display uppercase tracking-tight text-white/70 hover:text-white transition-colors"
               >
-                Programează-te Acum
-              </motion.a>
-            </div>
+                {link.name}
+              </a>
+            ))}
+            <a
+              href="https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="btn-primary mt-4"
+            >
+              Cere Ofertă Gratuită
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 }

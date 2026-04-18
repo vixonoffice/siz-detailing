@@ -1,15 +1,7 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, MessageCircle } from 'lucide-react';
 
-const services = [
-  'Spălare Exterior Premium',
-  'Curățare Interior Completă',
-  'Polish & Corecție Vopsea',
-  'Detailing Complet',
-  'Protecție Ceramică',
-  'Curățare Compartiment Motor',
-];
+const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing%20interior.%20Trimit%20poze%20cu%20ma%C8%99ina.";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -18,168 +10,74 @@ const WhatsAppIcon = () => (
 );
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert('Mesajul a fost trimis cu succes!');
-    }, 2000);
-  };
-
   return (
-    <section id="contact" className="py-24 md:py-40 px-6 md:px-12 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/[0.04] blur-[200px] rounded-full pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-purple/8 blur-[150px] rounded-full pointer-events-none" />
+    <section id="contact" className="py-24 md:py-32 px-6 md:px-10">
+      <div className="max-w-4xl mx-auto text-center">
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Info Side */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">Contact</span>
+          <h2 className="text-4xl md:text-6xl font-bold font-display uppercase leading-tight text-white mb-4">
+            Hai să <span className="text-primary">Lucrăm</span>
+          </h2>
+          <p className="text-white/40 text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
+            Trimite-ne câteva poze cu interiorul mașinii pe WhatsApp și îți facem oferta pe loc.
+            Fără formulare, fără așteptare.
+          </p>
+        </motion.div>
+
+        {/* WhatsApp — CTA principal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-10"
+        >
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#22c55e] text-white font-bold font-display uppercase tracking-wide text-base px-8 py-5 rounded-xl transition-colors duration-200"
           >
-            <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] md:text-xs mb-5 md:mb-6 block">Ești gata?</span>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-6 md:mb-10 font-display">
-              <span className="text-gradient">Hai să</span> <br />
-              <span className="text-gradient-red italic text-glow">Lucrăm</span>
-            </h2>
-            <p className="text-white/30 text-base md:text-lg font-light mb-10 md:mb-16 max-w-md leading-relaxed">
-              Programează-te astăzi și oferă-i mașinii tale tratamentul pe care îl merită cu adevărat.
-            </p>
+            <WhatsAppIcon />
+            Scrie-ne pe WhatsApp
+          </a>
+          <p className="text-white/20 text-xs mt-3 uppercase tracking-wider">Răspundem în mai puțin de 1 oră</p>
+        </motion.div>
 
-            <div className="space-y-6 md:space-y-8">
-              {/* Phone */}
-              <a href="tel:0761639988" className="flex items-center gap-5 md:gap-6 group">
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:shadow-glow transition-all duration-700">
-                  <Phone className="text-primary group-hover:text-white w-5 h-5 md:w-6 md:h-6 transition-colors" />
-                </div>
-                <div>
-                  <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/15 font-bold mb-1">Telefon Direct</div>
-                  <div className="text-xl md:text-2xl font-black tracking-widest text-white/40 group-hover:text-white transition-colors uppercase">
-                    0761 639 988
-                  </div>
-                </div>
-              </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/40761639988?text=Bun%C4%83%20ziua!%20A%C8%99%20dori%20s%C4%83%20programez%20o%20%C8%99edin%C8%9B%C4%83%20de%20detailing."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-5 md:gap-6 group"
-              >
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-[#25D366] group-hover:border-[#25D366] group-hover:shadow-[0_0_40px_rgba(37,211,102,0.3)] transition-all duration-700">
-                  <WhatsAppIcon />
-                </div>
-                <div>
-                  <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/15 font-bold mb-1">WhatsApp</div>
-                  <div className="text-xl md:text-2xl font-black tracking-widest text-white/40 group-hover:text-white transition-colors uppercase">
-                    Scrie-ne Acum
-                  </div>
-                </div>
-              </a>
-
-              {/* Location */}
-              <div className="flex items-center gap-5 md:gap-6 group">
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-700">
-                  <MapPin className="text-primary w-5 h-5 md:w-6 md:h-6" />
-                </div>
-                <div>
-                  <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/15 font-bold mb-1">Locație Studio</div>
-                  <div className="text-xl md:text-2xl font-black tracking-widest text-white/40 uppercase">Rm. Vâlcea, RO</div>
-                </div>
-              </div>
+        {/* Info secundar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 text-white/40"
+        >
+          <a
+            href="tel:0761639988"
+            className="flex items-center gap-3 hover:text-white transition-colors duration-200 group"
+          >
+            <div className="w-10 h-10 rounded-xl border border-white/[0.08] flex items-center justify-center group-hover:border-primary/30 transition-colors">
+              <Phone size={16} className="text-primary" />
             </div>
-          </motion.div>
+            <span className="font-semibold tracking-wider">0761 639 988</span>
+          </a>
 
-          {/* Form Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
-          >
-            {/* Glow behind form */}
-            <div className="absolute -inset-6 bg-primary/[0.03] blur-[80px] rounded-full" />
+          <div className="w-px h-8 bg-white/[0.06] hidden sm:block" />
 
-            <form
-              onSubmit={handleSubmit}
-              className="relative glass-card p-8 md:p-12 lg:p-14 rounded-2xl md:rounded-[2.5rem] space-y-5 md:space-y-7"
-            >
-              {/* Form title */}
-              <div className="mb-2 md:mb-4">
-                <h3 className="text-lg md:text-xl font-black text-white/80 uppercase tracking-wide font-display">Programare Rapidă</h3>
-                <p className="text-white/20 text-xs md:text-sm mt-1">Completează formularul și te contactăm noi.</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl border border-white/[0.08] flex items-center justify-center">
+              <MapPin size={16} className="text-primary" />
+            </div>
+            <span className="font-semibold tracking-wider">Rm. Vâlcea, România</span>
+          </div>
+        </motion.div>
 
-              <div className="space-y-2">
-                <label className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold ml-1">
-                  Nume Complet
-                </label>
-                <input
-                  required
-                  type="text"
-                  placeholder="Ex: Andrei Popescu"
-                  className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl md:rounded-2xl px-5 md:px-6 py-4 md:py-5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(255,0,0,0.05)] transition-all text-white font-bold text-sm md:text-base placeholder:text-white/10"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold ml-1">
-                  Telefon
-                </label>
-                <input
-                  required
-                  type="tel"
-                  placeholder="07XX XXX XXX"
-                  className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl md:rounded-2xl px-5 md:px-6 py-4 md:py-5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.05] focus:shadow-[0_0_30px_rgba(255,0,0,0.05)] transition-all text-white font-bold text-sm md:text-base placeholder:text-white/10"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold ml-1">
-                  Serviciu Dorit
-                </label>
-                <select
-                  defaultValue=""
-                  required
-                  className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl md:rounded-2xl px-5 md:px-6 py-4 md:py-5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.05] transition-all text-white/30 font-bold text-sm md:text-base appearance-none"
-                >
-                  <option value="" disabled>
-                    Alege Serviciul...
-                  </option>
-                  {services.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 md:py-5 bg-primary hover:bg-primary-light text-white font-black text-[10px] md:text-xs uppercase tracking-[0.4em] rounded-xl md:rounded-2xl transition-all duration-500 glow-pulse hover:shadow-glow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  'Se procesează...'
-                ) : (
-                  <>
-                    Trimite Cererea
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </form>
-          </motion.div>
-        </div>
       </div>
     </section>
   );
