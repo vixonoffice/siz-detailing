@@ -29,10 +29,7 @@ export default defineConfig(({ mode }) => ({
     target: 'es2020',
     cssCodeSplit: true,
     cssMinify: true,
-    minify: 'esbuild',
-    esbuild: {
-      drop: mode === 'production' ? ['console', 'debugger'] : [],
-    },
+    minify: mode === 'production',
     modulePreload: {
       polyfill: false,
     },
