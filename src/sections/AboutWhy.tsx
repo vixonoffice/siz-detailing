@@ -17,12 +17,27 @@ export default function AboutWhy() {
             transition={{ duration: 0.7, ease: easeOut }}
             className="grid grid-cols-2 gap-3"
           >
+            {/* Label deasupra */}
+            <div className="col-span-2 flex items-center gap-3 mb-1">
+              <div className="h-px flex-1 bg-white/[0.06]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/25">Munca Noastră</span>
+              <div className="h-px flex-1 bg-white/[0.06]" />
+            </div>
+
             <div className="col-span-2 aspect-video overflow-hidden rounded-2xl border border-white/[0.06]">
               <AutoVideo
                 src="/videos/munca1.mp4"
                 className="w-full h-full object-cover"
               />
             </div>
+
+            {/* Separator între videouri */}
+            <div className="col-span-2 flex items-center gap-3">
+              <div className="h-px flex-1 bg-white/[0.04]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary/40" />
+              <div className="h-px flex-1 bg-white/[0.04]" />
+            </div>
+
             <div className="col-span-2 aspect-video overflow-hidden rounded-2xl border border-white/[0.06]">
               <AutoVideo
                 src="/videos/munca2.mp4"
