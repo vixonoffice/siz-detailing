@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -7,15 +8,39 @@ const easeOut = [0.16, 1, 0.3, 1];
 
 export default function Hero() {
   const shouldReduce = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    (v as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
+    v.play().catch(() => {});
+    const forcePlay = () => { v.muted = true; v.play().catch(() => {}); };
+    document.addEventListener('touchstart', forcePlay, { once: true, passive: true });
+    document.addEventListener('scroll', forcePlay, { once: true, passive: true });
+    return () => {
+      document.removeEventListener('touchstart', forcePlay);
+      document.removeEventListener('scroll', forcePlay);
+    };
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#060608]">
 
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/home.png')", opacity: 0.32 }}
-      />
+      {/* Background video */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.35 }}
+          autoPlay muted loop playsInline disablePictureInPicture
+          poster="/images/home.png"
+          preload="auto"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* Gradients */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/10" />
