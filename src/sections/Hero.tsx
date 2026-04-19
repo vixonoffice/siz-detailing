@@ -5,67 +5,83 @@ const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+    <section id="home" className="relative min-h-screen flex items-end overflow-hidden">
+      {/* Background image — mai vizibila */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/home.png')",
-          opacity: 0.12,
+          opacity: 0.28,
         }}
       />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+      {/* Grain texture overlay */}
+      <div className="absolute inset-0 grain-overlay pointer-events-none" />
 
-      {/* Red ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+      {/* Gradient overlay — puternic jos, usor sus */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
 
-      {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20"
-      >
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-            Rm. Vâlcea · Detailing Interior
-          </span>
-        </div>
+      {/* Linie rosie verticala — element design */}
+      <div className="absolute left-6 md:left-10 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-primary to-transparent opacity-60" />
 
-        {/* Title */}
-        <h1 className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold font-display uppercase leading-none tracking-tighter mb-6">
-          <span className="text-white">Siz</span>
-          <br />
-          <span className="text-primary">Detailing</span>
-        </h1>
+      {/* Content — left aligned */}
+      <div className="relative z-10 w-full px-10 md:px-16 pb-20 pt-32 max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/25 bg-primary/8 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+              Rm. Vâlcea · Detailing Interior
+            </span>
+          </div>
 
-        {/* Subtitle */}
-        <p className="text-base md:text-xl text-white/50 font-body mb-10 max-w-xl mx-auto leading-relaxed">
-          Detailing interior profesional pentru mașini, furgoane și TIR-uri.
-          Prețul se face pe loc după poze — fără surprize.
-        </p>
+          {/* Title */}
+          <h1 className="font-display font-bold uppercase leading-[0.88] tracking-tighter mb-6">
+            <span className="block text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] text-white">
+              Siz
+            </span>
+            <span className="block text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] text-white/20">
+              Detailing
+            </span>
+          </h1>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
-            Trimite Poze pe WhatsApp
-            <ArrowRight size={16} />
-          </a>
-          <a href="#results" className="btn-secondary text-sm">
-            Vezi Rezultatele
-          </a>
-        </div>
-      </motion.div>
+          {/* Linie separator */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px w-12 bg-primary" />
+            <p className="text-white/50 text-sm md:text-base font-body leading-relaxed max-w-md">
+              Detailing interior profesional pentru mașini, furgoane și TIR-uri.
+              Prețul se face pe loc după poze — fără surprize.
+            </p>
+          </div>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-start gap-4 mt-8">
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
+              Trimite Poze pe WhatsApp
+              <ArrowRight size={16} />
+            </a>
+            <a href="#results" className="btn-secondary text-sm">
+              Vezi Rezultatele
+            </a>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/20">
-        <ChevronDown size={24} />
-      </div>
+      <motion.div
+        className="absolute bottom-8 right-8 md:right-10 text-white/20 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        <span className="text-[9px] uppercase tracking-[0.2em] rotate-90 origin-center mb-2">Scroll</span>
+        <ChevronDown size={18} />
+      </motion.div>
     </section>
   );
 }
