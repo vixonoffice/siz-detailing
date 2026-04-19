@@ -12,11 +12,10 @@ export default function Hero() {
         style={{
           backgroundImage: "url('/images/home.png')",
           opacity: 0.28,
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       />
-
-      {/* Grain texture overlay */}
-      <div className="absolute inset-0 grain-overlay pointer-events-none" />
 
       {/* Gradient overlay — puternic jos, usor sus */}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
