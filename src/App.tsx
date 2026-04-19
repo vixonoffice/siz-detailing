@@ -1,18 +1,22 @@
 import Navbar from './components/Navbar';
+import Marquee from './components/Marquee';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
-import Services from './sections/Services';
+import Stats from './sections/Stats';
 import BeforeAfter from './sections/BeforeAfter';
+import Services from './sections/Services';
 import AboutWhy from './sections/AboutWhy';
 import GalleryTestimonials from './sections/GalleryTestimonials';
 import Contact from './sections/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-[#060608] text-white">
       <Navbar />
       <main>
         <Hero />
+        <Marquee />
+        <Stats />
         <BeforeAfter />
         <Services />
         <AboutWhy />

@@ -1,86 +1,144 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing%20interior.%20Trimit%20poze%20cu%20ma%C8%99ina.";
 
+const easeOut = [0.22, 1, 0.36, 1];
+
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-end overflow-hidden">
-      {/* Background image — mai vizibila */}
+    <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#060608]">
+
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/home.png')",
-          opacity: 0.28,
+          opacity: 0.32,
           willChange: 'transform',
           transform: 'translateZ(0)',
         }}
       />
 
-      {/* Gradient overlay — puternic jos, usor sus */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
+      {/* Gradients */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/80 via-transparent to-transparent" />
 
-      {/* Linie rosie verticala — element design */}
-      <div className="absolute left-6 md:left-10 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-primary to-transparent opacity-60" />
+      {/* Red ambient glow — titlu */}
+      <div className="absolute bottom-[30%] left-[5%] w-[40vw] h-[30vh] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Content — left aligned */}
-      <div className="relative z-10 w-full px-6 md:px-16 pb-20 pt-32 max-w-7xl mx-auto">
+      {/* Linie verticala rosie */}
+      <div className="absolute left-6 md:left-14 top-[20%] h-[55%] w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
+
+      {/* Content */}
+      <div className="relative z-10 w-full px-6 md:px-14 pb-16 md:pb-24 pt-36 max-w-7xl mx-auto">
+
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: easeOut }}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-10"
         >
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/25 bg-primary/8 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
-              Rm. Vâlcea · Detailing Interior
-            </span>
-          </div>
-
-          {/* Title */}
-          <h1 className="font-display font-bold uppercase leading-[0.88] tracking-tighter mb-6">
-            <span className="block text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] text-white">
-              Siz
-            </span>
-            <span className="block text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] text-white/20">
-              Detailing
-            </span>
-          </h1>
-
-          {/* Linie separator */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-12 bg-primary" />
-            <p className="text-white/50 text-sm md:text-base font-body leading-relaxed max-w-md">
-              Detailing interior profesional pentru mașini, furgoane și TIR-uri.
-              Prețul se face pe loc după poze — fără surprize.
-            </p>
-          </div>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start gap-4 mt-8">
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm w-full sm:w-auto justify-center">
-              Trimite Poze pe WhatsApp
-              <ArrowRight size={16} />
-            </a>
-            <a href="#results" className="btn-secondary text-sm w-full sm:w-auto justify-center">
-              Vezi Rezultatele
-            </a>
-          </div>
+          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/80">
+            Rm. Vâlcea · Detailing Interior
+          </span>
         </motion.div>
+
+        {/* Titlu cu 3D word reveal */}
+        <div className="overflow-hidden mb-2">
+          <motion.h1
+            className="font-display font-bold uppercase leading-[0.85] tracking-tighter"
+            initial="hidden"
+            animate="visible"
+          >
+            {/* SIZ — cu glow rosu */}
+            <motion.span
+              className="block text-[5.5rem] sm:text-[7.5rem] md:text-[10rem] lg:text-[13rem] text-white"
+              style={{
+                textShadow: '0 0 80px rgba(220,38,38,0.35), 0 0 160px rgba(220,38,38,0.15)',
+              }}
+              initial={{ opacity: 0, y: 80, rotateX: 40 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, ease: easeOut, delay: 0.1 }}
+            >
+              Siz
+            </motion.span>
+
+            {/* DETAILING — estompat, 3D reveal cu delay */}
+            <motion.span
+              className="block text-[3rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] text-white/15 -mt-2 md:-mt-4"
+              initial={{ opacity: 0, y: 60, rotateX: 30 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, ease: easeOut, delay: 0.25 }}
+            >
+              Detailing
+            </motion.span>
+          </motion.h1>
+        </div>
+
+        {/* Separator + descriere */}
+        <motion.div
+          className="flex items-start gap-4 mt-6 mb-8 max-w-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: easeOut, delay: 0.45 }}
+        >
+          <div className="h-px w-10 bg-primary mt-3 shrink-0" />
+          <p className="text-white/45 text-sm md:text-base leading-relaxed">
+            Detailing interior profesional pentru mașini, furgoane și TIR-uri.
+            Prețul se face pe loc după poze — fără surprize.
+          </p>
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: easeOut, delay: 0.55 }}
+        >
+          <motion.a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary justify-center"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2 }}
+          >
+            Trimite Poze pe WhatsApp
+            <ArrowRight size={16} />
+          </motion.a>
+          <motion.a
+            href="#results"
+            className="btn-secondary justify-center"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2 }}
+          >
+            Vezi Rezultatele
+          </motion.a>
+        </motion.div>
+
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll hint */}
       <motion.div
-        className="absolute bottom-8 right-8 md:right-10 text-white/20 flex flex-col items-center gap-2"
+        className="absolute bottom-8 right-6 md:right-14 flex flex-col items-center gap-2 text-white/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
       >
-        <span className="text-[9px] uppercase tracking-[0.2em] rotate-90 origin-center mb-2">Scroll</span>
-        <ChevronDown size={18} />
+        <span className="text-[9px] uppercase tracking-[0.25em]">Scroll</span>
+        <motion.div
+          className="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"
+          animate={{ scaleY: [1, 0.5, 1], opacity: [0.4, 0.8, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        />
       </motion.div>
+
     </section>
   );
 }

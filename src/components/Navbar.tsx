@@ -15,7 +15,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -26,50 +26,60 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${
-        scrolled ? 'bg-background shadow-[0_1px_0_rgba(255,255,255,0.04)]' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 md:h-18 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-1 z-50">
-          <span className="text-2xl font-bold font-display text-white uppercase tracking-tight">
-            Siz
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-0.5" />
-        </a>
+    <>
+      {/* Floating navbar */}
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-40 px-4 md:px-6 pt-4 transition-all duration-300`}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <div
+          className={`max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 h-14 rounded-2xl transition-all duration-300 ${
+            scrolled
+              ? 'bg-[#060608] shadow-[0_0_0_1px_rgba(255,255,255,0.06)]'
+              : 'bg-transparent'
+          }`}
+        >
+          {/* Logo */}
+          <a href="#home" className="flex items-center gap-1.5 z-50">
+            <span className="text-xl font-bold font-display text-white uppercase tracking-tight">Siz</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+          </a>
 
-        {/* Desktop links */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-xs font-semibold uppercase tracking-widest text-white/40 hover:text-white transition-colors duration-200"
-            >
-              {link.name}
-            </a>
-          ))}
+          {/* Desktop links */}
+          <nav className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-[11px] font-semibold uppercase tracking-widest text-white/35 hover:text-white transition-colors duration-200"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
           <a
             href="https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing."
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-xs py-2.5 px-5"
+            className="hidden md:inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-[11px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-xl transition-colors duration-200 cursor-pointer"
           >
             Cere Ofertă
           </a>
-        </nav>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden z-50 w-10 h-10 flex items-center justify-center text-white"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
+          {/* Mobile toggle */}
+          <button
+            className="md:hidden z-50 w-9 h-9 flex items-center justify-center text-white cursor-pointer"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </motion.header>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -79,30 +89,36 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 bg-[#060608] z-40 flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, i) => (
+              <motion.a
                 key={link.name}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-2xl font-bold font-display uppercase tracking-tight text-white/70 hover:text-white transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07 }}
+                className="text-3xl font-bold font-display uppercase tracking-tight text-white/60 hover:text-white transition-colors cursor-pointer"
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
-            <a
+            <motion.a
               href="https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing."
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="btn-primary mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navLinks.length * 0.07 }}
+              className="btn-primary mt-2 cursor-pointer"
             >
-              Cere Ofertă Gratuită
-            </a>
+              Cere Ofertă
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
