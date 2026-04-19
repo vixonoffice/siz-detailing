@@ -22,15 +22,7 @@ export default function AboutWhy() {
                 loading="lazy"
               />
             </div>
-            <div className="aspect-square overflow-hidden rounded-xl border border-white/[0.06]">
-              <img
-                src="/images/scaun.jpeg"
-                alt="Scaun impecabil după detailing"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden rounded-xl border border-white/[0.06]">
+            <div className="col-span-2 aspect-[16/10] overflow-hidden rounded-xl border border-white/[0.06]">
               <img
                 src="/images/munca2.jpeg"
                 alt="Siz Detailing studio"

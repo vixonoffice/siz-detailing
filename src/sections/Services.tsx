@@ -89,7 +89,8 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="card p-8 md:p-12 border-primary/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+          className="card p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+          style={{ borderColor: 'rgba(220,38,38,0.25)' }}
         >
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">Prețuri</span>
