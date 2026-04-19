@@ -32,7 +32,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 px-6 md:px-14">
+    <section id="services" className="py-14 md:py-32 px-6 md:px-14">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

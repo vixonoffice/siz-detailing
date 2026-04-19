@@ -36,7 +36,7 @@ export default function Stats() {
   const shouldReduce = useReducedMotion();
 
   return (
-    <section className="py-20 md:py-28 px-6 md:px-14">
+    <section className="py-12 md:py-28 px-6 md:px-14">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-3 gap-6 md:gap-10">
           {stats.map((stat, i) => (

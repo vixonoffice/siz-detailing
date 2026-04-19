@@ -53,7 +53,7 @@ export default function Hero() {
       <div className="absolute left-6 md:left-14 top-[20%] h-[55%] w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 w-full px-6 md:px-14 pb-16 md:pb-24 pt-36 max-w-7xl mx-auto">
+      <div className="relative z-10 w-full px-6 md:px-14 pb-12 md:pb-24 pt-36 max-w-7xl mx-auto">
 
         {/* Badge */}
         <motion.div
