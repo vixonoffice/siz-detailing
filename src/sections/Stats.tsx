@@ -36,9 +36,9 @@ export default function Stats() {
   const shouldReduce = useReducedMotion();
 
   return (
-    <section className="py-16 md:py-20 px-6 md:px-14 bg-[#060608]">
+    <section className="py-20 md:py-28 px-6 md:px-14">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-3 gap-6 md:gap-10">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -48,10 +48,10 @@ export default function Stats() {
               transition={{ duration: 0.7, delay: i * 0.12, ease: easeOut }}
               className="text-center md:text-left"
             >
-              <div className="text-3xl sm:text-4xl md:text-6xl font-bold font-display text-white leading-none mb-2">
+              <div className="text-3xl sm:text-4xl md:text-6xl font-bold font-display text-white leading-none mb-3">
                 <Counter target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.18em] text-white/20">
+              <div className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.18em] text-white/25">
                 {stat.label}
               </div>
             </motion.div>

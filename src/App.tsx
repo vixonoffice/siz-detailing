@@ -12,7 +12,7 @@ import Location from './sections/Location';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#060608] text-white">
+    <div className="min-h-screen bg-[#0A0A0F] text-white">
       <Navbar />
       <main>
         <Hero />

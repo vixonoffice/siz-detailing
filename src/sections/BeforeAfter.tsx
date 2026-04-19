@@ -99,7 +99,7 @@ export default function BeforeAfter() {
           transition={{ duration: 0.5 }}
           className="mb-10 md:mb-14"
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">Rezultate Reale</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-3 block">Rezultate Reale</span>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 className="text-4xl md:text-6xl font-bold font-display uppercase leading-tight text-white">
               Înainte <span className="text-white/20">&</span> <span className="text-primary">După</span>

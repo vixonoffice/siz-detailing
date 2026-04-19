@@ -26,7 +26,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#060608]">
+    <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#0A0A0F]">
 
       {/* Background video */}
       <div className="absolute inset-0 overflow-hidden">
@@ -43,8 +43,8 @@ export default function Hero() {
       </div>
 
       {/* Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/80 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F] via-[#0A0A0F]/75 to-[#0A0A0F]/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F]/80 via-transparent to-transparent" />
 
       {/* Red ambient glow — titlu */}
       <div className="absolute bottom-[30%] left-[5%] w-[40vw] h-[30vh] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />

@@ -12,22 +12,31 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
       {/* Floating navbar */}
       <motion.header
-        className="fixed top-0 left-0 right-0 z-40"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          scrolled ? 'bg-[#0A0A0F]/80 backdrop-blur-xl border-b border-white/[0.04]' : ''
+        }`}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 h-14">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-14 h-16">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-1.5 z-50">
             <span className="text-xl font-bold font-display text-white uppercase tracking-tight">Siz</span>
@@ -76,7 +85,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-[#060608] z-40 flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 bg-[#0A0A0F] z-40 flex flex-col items-center justify-center gap-8 md:hidden"
           >
             {navLinks.map((link, i) => (
               <motion.a

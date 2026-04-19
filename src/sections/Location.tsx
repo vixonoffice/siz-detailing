@@ -42,7 +42,7 @@ export default function Location() {
             src="/videos/locatie.mp4"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/60 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/60 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-6 left-6 flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-primary/90 flex items-center justify-center">
               <MapPin size={14} className="text-white" />

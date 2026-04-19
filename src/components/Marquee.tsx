@@ -11,10 +11,10 @@ export default function Marquee() {
   const repeated = [...items, ...items, ...items];
 
   return (
-    <div className="relative overflow-hidden border-y border-white/[0.05] bg-[#060608] py-4">
+    <div className="relative overflow-hidden border-y border-white/[0.05] bg-[#0A0A0F] py-4">
       {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#060608] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#060608] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10 pointer-events-none" />
 
       <div className="marquee-track flex gap-0">
         {repeated.map((item, i) => (

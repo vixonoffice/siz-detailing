@@ -49,7 +49,7 @@ export default function Services() {
               Servicii <span className="text-white/15">Detailing</span>
             </h2>
           </div>
-          <p className="text-white/25 text-sm max-w-xs leading-relaxed md:text-right">
+          <p className="text-white/25 text-sm max-w-sm leading-relaxed md:text-right">
             Mașini, furgoane, TIR-uri — oricare ar fi starea interiorului.
           </p>
         </motion.div>
@@ -67,7 +67,7 @@ export default function Services() {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
               whileHover={{ x: 6, rotateX: -1, backgroundColor: 'rgba(255,255,255,0.02)' }}
-              className="border-b border-white/[0.05] py-5 md:py-6 flex items-center gap-5 md:gap-8 transition-colors duration-200 cursor-default px-2 rounded-sm"
+              className="group border-b border-white/[0.05] py-5 md:py-7 flex items-center gap-5 md:gap-8 transition-colors duration-200 cursor-default px-2 md:px-4 rounded-sm"
               style={{ transformOrigin: 'left center' }}
             >
               <span className="font-display font-bold text-[11px] text-primary/50 tabular-nums shrink-0 w-6">
@@ -80,7 +80,7 @@ export default function Services() {
               <span className="hidden lg:block text-white/20 text-sm max-w-xs leading-relaxed">
                 {s.description}
               </span>
-              <ArrowUpRight size={15} className="text-primary/60 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ArrowUpRight size={15} className="text-primary/50 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
         </div>

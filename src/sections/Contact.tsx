@@ -20,11 +20,11 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">Contact</span>
-          <h2 className="text-4xl md:text-6xl font-bold font-display uppercase leading-tight text-white mb-4">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-3 block">Contact</span>
+          <h2 className="text-4xl md:text-6xl font-bold font-display uppercase leading-tight text-white mb-5">
             Hai să <span className="text-primary">Lucrăm</span>
           </h2>
-          <p className="text-white/40 text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
+          <p className="text-white/35 text-base md:text-lg max-w-lg mx-auto mb-12 leading-relaxed">
             Trimite-ne câteva poze cu interiorul mașinii pe WhatsApp și îți facem oferta pe loc.
             Fără formulare, fără așteptare.
           </p>
@@ -36,13 +36,13 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-10"
+          className="mb-12"
         >
           <a
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#22c55e] text-white font-bold font-display uppercase tracking-wide text-base px-8 py-5 rounded-xl transition-colors duration-200"
+            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#22c55e] text-white font-bold font-display uppercase tracking-wide text-base px-10 py-5 rounded-2xl transition-all duration-200 hover:scale-[1.02] hover:-translate-y-0.5"
           >
             <WhatsAppIcon />
             Scrie-ne pe WhatsApp

@@ -34,7 +34,7 @@ export default function GalleryTestimonials() {
               Munca <span className="text-white/15">Noastră</span>
             </h2>
           </div>
-          <p className="text-white/25 text-sm max-w-xs leading-relaxed md:text-right">
+          <p className="text-white/25 text-sm max-w-sm leading-relaxed md:text-right">
             Click pe imagini pentru a vedea în detaliu.
           </p>
         </motion.div>
