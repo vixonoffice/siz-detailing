@@ -1,11 +1,13 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing%20interior.%20Trimit%20poze%20cu%20ma%C8%99ina.";
 
-const easeOut = [0.22, 1, 0.36, 1];
+const easeOut = [0.16, 1, 0.3, 1];
 
 export default function Hero() {
+  const shouldReduce = useReducedMotion();
+
   return (
     <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#060608]">
 
@@ -53,15 +55,20 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
           >
-            {/* SIZ — cu glow rosu */}
+            {/* SIZ — gradient text + glow rosu */}
             <motion.span
-              className="block text-[5.5rem] sm:text-[7.5rem] md:text-[10rem] lg:text-[13rem] text-white"
+              className="block text-[5.5rem] sm:text-[7.5rem] md:text-[10rem] lg:text-[13rem]"
               style={{
-                textShadow: '0 0 80px rgba(220,38,38,0.35), 0 0 160px rgba(220,38,38,0.15)',
+                background: 'linear-gradient(135deg, #ffffff 0%, #cccccc 60%, #888888 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: 'none',
+                filter: 'drop-shadow(0 0 60px rgba(220,38,38,0.3)) drop-shadow(0 0 120px rgba(220,38,38,0.12))',
               }}
-              initial={{ opacity: 0, y: 80, rotateX: 40 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, ease: easeOut, delay: 0.1 }}
+              initial={shouldReduce ? false : { opacity: 0, y: 80, rotateX: 40, filter: 'blur(12px)' }}
+              animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, ease: easeOut, delay: 0.1 }}
             >
               Siz
             </motion.span>
@@ -69,9 +76,9 @@ export default function Hero() {
             {/* DETAILING — estompat, 3D reveal cu delay */}
             <motion.span
               className="block text-[3rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] text-white/15 -mt-2 md:-mt-4"
-              initial={{ opacity: 0, y: 60, rotateX: 30 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, ease: easeOut, delay: 0.25 }}
+              initial={shouldReduce ? false : { opacity: 0, y: 60, rotateX: 30, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, ease: easeOut, delay: 0.28 }}
             >
               Detailing
             </motion.span>
