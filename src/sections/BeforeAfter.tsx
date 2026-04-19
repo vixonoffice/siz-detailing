@@ -145,7 +145,7 @@ export default function BeforeAfter() {
           className="text-center"
         >
           <p className="text-white/30 mb-5 text-sm">Ai văzut diferența? Mașina ta e următoarea.</p>
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex">
+          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex w-full sm:w-auto justify-center">
             Trimite Poze pentru Ofertă
             <ArrowRight size={16} />
           </a>

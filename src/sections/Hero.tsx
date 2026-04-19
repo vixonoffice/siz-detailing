@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="absolute left-6 md:left-10 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-primary to-transparent opacity-60" />
 
       {/* Content — left aligned */}
-      <div className="relative z-10 w-full px-10 md:px-16 pb-20 pt-32 max-w-7xl mx-auto">
+      <div className="relative z-10 w-full px-6 md:px-16 pb-20 pt-32 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,11 +61,11 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-start gap-4 mt-8">
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm w-full sm:w-auto justify-center">
               Trimite Poze pe WhatsApp
               <ArrowRight size={16} />
             </a>
-            <a href="#results" className="btn-secondary text-sm">
+            <a href="#results" className="btn-secondary text-sm w-full sm:w-auto justify-center">
               Vezi Rezultatele
             </a>
           </div>

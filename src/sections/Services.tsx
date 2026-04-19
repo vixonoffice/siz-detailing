@@ -112,7 +112,7 @@ export default function Services() {
               Trimite câteva poze cu interiorul și primești oferta pe loc. Răspundem în mai puțin de 1 oră.
             </p>
           </div>
-          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary whitespace-nowrap shrink-0">
+          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary w-full md:w-auto justify-center shrink-0">
             Trimite Poze pe WhatsApp
             <ArrowRight size={16} />
           </a>
