@@ -88,7 +88,7 @@ const pairs = [
 
 export default function BeforeAfter() {
   return (
-    <section id="results" className="py-24 md:py-32 px-6 md:px-10">
+    <section id="results" className="py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
