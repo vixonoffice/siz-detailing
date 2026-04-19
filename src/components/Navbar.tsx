@@ -11,14 +11,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -29,18 +22,12 @@ export default function Navbar() {
     <>
       {/* Floating navbar */}
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-40 px-4 md:px-6 pt-4 transition-all duration-300`}
+        className="fixed top-0 left-0 right-0 z-40"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div
-          className={`max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 h-14 rounded-2xl transition-all duration-300 ${
-            scrolled
-              ? 'bg-[#060608] shadow-[0_0_0_1px_rgba(255,255,255,0.06)]'
-              : 'bg-transparent'
-          }`}
-        >
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 h-14">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-1.5 z-50">
             <span className="text-xl font-bold font-display text-white uppercase tracking-tight">Siz</span>
