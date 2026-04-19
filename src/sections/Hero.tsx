@@ -11,16 +11,20 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#060608]">
 
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/home.png')",
-          opacity: 0.32,
-          willChange: 'transform',
-          transform: 'translateZ(0)',
-        }}
-      />
+      {/* Background video cu fallback la imagine */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.35 }}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/home.png"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* Gradients */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-[#060608]/75 to-[#060608]/10" />
