@@ -6,6 +6,7 @@ const images = [
   { src: '/images/brand.jpeg', alt: 'Siz Detailing — Studio Rm. Vâlcea' },
   { src: '/images/munca1.jpeg', alt: 'La lucru în studio' },
   { src: '/images/munca2.jpeg', alt: 'Tratament scaun' },
+  { src: '/images/scaun.jpeg', alt: 'Scaun BMW impecabil după detailing' },
   { src: '/images/interior-curat.jpeg', alt: 'Interior curat după detailing' },
   { src: '/images/bord-curat.jpeg', alt: 'Bord TIR după detailing' },
   { src: '/images/motor-curat.jpeg', alt: 'Compartiment motor curat' },

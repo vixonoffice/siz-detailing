@@ -69,14 +69,14 @@ export default function AboutWhy() {
 
             <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/[0.06]">
               {[
-                { label: 'Mașini & Furgoane & TIR-uri', icon: '🚗' },
-                { label: 'Prețuri corecte pe loc', icon: '💬' },
-                { label: 'Studio propriu Rm. Vâlcea', icon: '📍' },
-                { label: 'Satisfacție garantată', icon: '✓' },
-              ].map((item) => (
-                <div key={item.label} className="flex items-start gap-3">
+                'Mașini, Furgoane & TIR-uri',
+                'Prețuri corecte pe loc',
+                'Studio propriu Rm. Vâlcea',
+                'Satisfacție garantată',
+              ].map((label) => (
+                <div key={label} className="flex items-start gap-3">
                   <span className="text-primary font-bold mt-0.5">✓</span>
-                  <span className="text-white/50 text-sm leading-snug">{item.label}</span>
+                  <span className="text-white/50 text-sm leading-snug">{label}</span>
                 </div>
               ))}
             </div>
