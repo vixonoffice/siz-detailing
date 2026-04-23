@@ -33,8 +33,8 @@ export default function AboutWhy() {
             transition={{ duration: 0.7, ease: easeOut }}
             className="flex flex-col gap-6"
           >
-            <div className="overflow-hidden rounded-2xl border border-white/[0.06]" style={{aspectRatio:'9/16'}}>
-              <AutoVideo src="/videos/siz-v1.mp4" className="w-full h-full object-cover" />
+            <div className="aspect-video overflow-hidden rounded-2xl border border-white/[0.06]">
+              <AutoVideo src="/videos/munca2.mp4" className="w-full h-full object-cover" />
             </div>
           </motion.div>
 
@@ -62,7 +62,7 @@ export default function AboutWhy() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-white/[0.05]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-white/[0.05] mb-8">
               {[
                 'Mașini, Furgoane & TIR-uri',
                 'Prețuri corecte pe loc',
@@ -74,6 +74,10 @@ export default function AboutWhy() {
                   <span className="text-white/40 text-sm leading-snug">{label}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border border-white/[0.06]" style={{aspectRatio:'9/16'}}>
+              <AutoVideo src="/videos/siz-v1.mp4" className="w-full h-full object-cover" />
             </div>
           </motion.div>
 
