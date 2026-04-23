@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import AutoVideo from '../components/AutoVideo';
 
 const VIDEOS = [
-  '/videos/siz-v1.mp4',
   '/videos/siz-v2.mp4',
   '/videos/siz-v3.mp4',
   '/videos/siz-v4.mp4',
@@ -24,11 +23,8 @@ export default function VideoReel() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10 md:mb-14"
         >
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-3 block">
-            Munca noastră
-          </span>
           <h2 className="text-4xl md:text-5xl font-bold font-display uppercase leading-tight text-white">
-            Procesul <span className="text-white/20">în acțiune.</span>
+            Rezultate <span className="text-white/20">reale.</span>
           </h2>
         </motion.div>
 

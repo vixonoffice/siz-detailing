@@ -33,8 +33,8 @@ export default function AboutWhy() {
             transition={{ duration: 0.7, ease: easeOut }}
             className="flex flex-col gap-6"
           >
-            <div className="aspect-video overflow-hidden rounded-2xl border border-white/[0.06]">
-              <AutoVideo src="/videos/munca2.mp4" className="w-full h-full object-cover" />
+            <div className="overflow-hidden rounded-2xl border border-white/[0.06]" style={{aspectRatio:'9/16'}}>
+              <AutoVideo src="/videos/siz-v1.mp4" className="w-full h-full object-cover" />
             </div>
           </motion.div>
 
