@@ -25,7 +25,7 @@ export default function Location() {
           </div>
           <div className="flex items-center gap-2 text-white/30 text-sm">
             <MapPin size={14} className="text-primary shrink-0" />
-            <span>Rm. Vâlcea, România</span>
+            <span>Calea București 256, Rm. Vâlcea</span>
           </div>
         </motion.div>
 
@@ -49,7 +49,7 @@ export default function Location() {
             </div>
             <div>
               <p className="text-white font-bold font-display uppercase text-sm tracking-wide">Siz Detailing</p>
-              <p className="text-white/50 text-xs">Rm. Vâlcea, România</p>
+              <p className="text-white/50 text-xs">Calea București 256, Rm. Vâlcea</p>
             </div>
           </div>
         </motion.div>
@@ -64,7 +64,7 @@ export default function Location() {
           style={{ height: '340px' }}
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91368.35!2d24.3!3d45.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474d0000000000%3A0x0!2sR%C3%A2mnicu+V%C3%A2lcea!5e0!3m2!1sro!2sro!4v1"
+            src="https://www.google.com/maps?q=Calea+Bucuresti+256+Ramnicu+Valcea&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) saturate(0.8)' }}
