@@ -34,9 +34,6 @@ export default function AboutWhy() {
             className="flex flex-col gap-6"
           >
             <div className="aspect-video overflow-hidden rounded-2xl border border-white/[0.06]">
-              <AutoVideo src="/videos/munca1.mp4" className="w-full h-full object-cover" />
-            </div>
-            <div className="aspect-video overflow-hidden rounded-2xl border border-white/[0.06]">
               <AutoVideo src="/videos/munca2.mp4" className="w-full h-full object-cover" />
             </div>
           </motion.div>
