@@ -12,37 +12,50 @@ const navLinks = [
   { name: 'Servicii', href: '#services' },
   { name: 'Rezultate', href: '#results' },
   { name: 'Despre', href: '#about' },
-  { name: 'Galerie', href: '#gallery' },
   { name: 'Contact', href: '#contact' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.04]">
-      <div className="max-w-7xl mx-auto px-6 md:px-14 py-10 md:py-16">
+    <footer className="relative border-t border-white/[0.04] overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mb-8 md:mb-12">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-14 pt-12 md:pt-16 pb-8">
+
+        {/* Top grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 mb-12">
 
           {/* Brand */}
           <div>
-            <a href="#home" className="flex items-center gap-1.5 mb-4">
-              <span className="text-2xl font-bold font-display uppercase text-white">Siz</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+            <a href="#home" className="flex items-center gap-1.5 mb-5">
+              <span className="text-2xl font-bold font-display uppercase text-white tracking-tight">Siz</span>
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span className="text-2xl font-bold font-display uppercase text-white/20 tracking-tight">Detailing</span>
             </a>
-            <p className="text-white/25 text-sm leading-relaxed max-w-xs">
+            <p className="text-white/25 text-sm leading-relaxed mb-5">
               Detailing interior profesional în Rm. Vâlcea. Curățare prin injecție-extracție pentru mașini, furgoane și TIR-uri.
             </p>
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#25D366] border border-[#25D366]/20 px-4 py-2.5 rounded-xl hover:bg-[#25D366]/10 transition-colors duration-200"
+            >
+              <WhatsAppIcon />
+              Cere ofertă
+            </a>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">Navigare</h4>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Navigare</h4>
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-white/30 hover:text-white transition-colors duration-200"
+                  className="text-sm text-white/30 hover:text-white transition-colors duration-200 w-fit"
                 >
                   {link.name}
                 </a>
@@ -50,29 +63,24 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Contact info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">Contact</h4>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Contact</h4>
             <div className="flex flex-col gap-4">
               <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-white/30 hover:text-[#25D366] transition-colors duration-200"
-              >
-                <WhatsAppIcon />
-                <span>WhatsApp</span>
-              </a>
-              <a
                 href="tel:0761639988"
-                className="flex items-center gap-3 text-sm text-white/30 hover:text-white transition-colors duration-200"
+                className="flex items-center gap-3 text-sm text-white/40 hover:text-white transition-colors duration-200 group"
               >
-                <Phone size={16} />
+                <div className="w-8 h-8 rounded-lg border border-white/[0.08] flex items-center justify-center group-hover:border-primary/30 transition-colors">
+                  <Phone size={14} className="text-primary" />
+                </div>
                 <span>0761 639 988</span>
               </a>
-              <div className="flex items-center gap-3 text-sm text-white/30">
-                <MapPin size={16} className="shrink-0" />
-                <span>Rm. Vâlcea, România</span>
+              <div className="flex items-center gap-3 text-sm text-white/40">
+                <div className="w-8 h-8 rounded-lg border border-white/[0.08] flex items-center justify-center shrink-0">
+                  <MapPin size={14} className="text-primary" />
+                </div>
+                <span>Calea București 256, Rm. Vâlcea</span>
               </div>
             </div>
           </div>
@@ -82,14 +90,20 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/15 text-xs uppercase tracking-wider">
-            &copy; {new Date().getFullYear()} Siz Detailing
+            &copy; {new Date().getFullYear()} Siz Detailing — Toate drepturile rezervate
           </p>
-          <p className="text-white/15 text-xs uppercase tracking-wider">
-            Crafted by{' '}
-            <a href="https://vixonlab.com" target="_blank" rel="noopener noreferrer" className="text-primary/40 hover:text-primary transition-colors">
-              VixonLab
-            </a>
-          </p>
+          <a
+            href="https://vixonlab.ro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/30 hover:text-white transition-colors duration-200"
+          >
+            <span>Website creat de</span>
+            <span className="text-primary group-hover:text-primary/80 font-bold transition-colors">VixonLab</span>
+            <svg viewBox="0 0 16 16" fill="none" className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </div>
 
       </div>

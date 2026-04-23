@@ -151,20 +151,6 @@ export default function Hero() {
 
       </div>
 
-      {/* Scroll hint */}
-      <motion.div
-        className="absolute bottom-8 right-6 md:right-14 flex flex-col items-center gap-2 text-white/20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.5 }}
-      >
-        <span className="text-[9px] uppercase tracking-[0.25em]">Scroll</span>
-        <motion.div
-          className="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"
-          animate={{ scaleY: [1, 0.5, 1], opacity: [0.4, 0.8, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </motion.div>
 
     </section>
   );

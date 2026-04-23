@@ -15,8 +15,20 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
   }, [open]);
 
   useEffect(() => {
@@ -85,8 +97,17 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-[#0A0A0F] z-40 flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 bg-[#0A0A0F] z-50 flex flex-col items-center justify-center gap-8 md:hidden"
           >
+            {/* Close button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-4 right-6 w-10 h-10 flex items-center justify-center text-white/50 hover:text-white transition-colors cursor-pointer"
+              aria-label="Închide meniu"
+            >
+              <X size={24} />
+            </button>
+
             {navLinks.map((link, i) => (
               <motion.a
                 key={link.name}

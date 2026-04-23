@@ -95,7 +95,7 @@ export default function Contact() {
           </div>
           <p className="text-white/35 text-sm">Ai lucrat cu noi? Lasă o recenzie și ajuți alți clienți.</p>
           <a
-            href="https://share.google/p9SxCSitIXlND3CvQ"
+            href="https://search.google.com/local/writereview?placeid=/g/11z1658j2w"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-white hover:bg-white/90 text-[#0A0A0F] font-bold font-display uppercase tracking-wide text-sm px-8 py-4 rounded-2xl transition-all duration-200 hover:scale-[1.02] hover:-translate-y-0.5"

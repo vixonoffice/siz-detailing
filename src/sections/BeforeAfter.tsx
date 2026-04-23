@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -14,7 +14,25 @@ interface SliderProps {
 function Slider({ before, after, label, size = 'small' }: SliderProps) {
   const [pos, setPos] = useState(50);
   const [dragging, setDragging] = useState(false);
+  const [hinted, setHinted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hinted) {
+          setHinted(true);
+          setTimeout(() => setPos(28), 600);
+          setTimeout(() => setPos(50), 1400);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hinted]);
 
   const move = (clientX: number) => {
     if (!ref.current) return;
@@ -55,11 +73,20 @@ function Slider({ before, after, label, size = 'small' }: SliderProps) {
         </span>
 
         {/* Handle */}
-        <div className="absolute top-0 bottom-0 w-px bg-white/80 z-10" style={{ left: `${pos}%` }}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-xl border border-white/20">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-black" fill="none" stroke="currentColor" strokeWidth={2.5}>
-              <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
-            </svg>
+        <div
+          className="absolute top-0 bottom-0 w-px bg-white/80 z-10 transition-[left] duration-700 ease-out"
+          style={{ left: `${pos}%`, transitionProperty: dragging ? 'none' : 'left' }}
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            {/* Pulse ring */}
+            {!dragging && (
+              <div className="absolute inset-0 rounded-full bg-white/20 animate-ping" style={{ width: '2.25rem', height: '2.25rem', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+            )}
+            <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-xl border border-white/20 relative z-10">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 text-black" fill="none" stroke="currentColor" strokeWidth={2.5}>
+                <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

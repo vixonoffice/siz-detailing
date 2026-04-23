@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import AutoVideo from '../components/AutoVideo';
 
 const VIDEOS = [
+  '/videos/siz-v1.mp4',
   '/videos/siz-v2.mp4',
   '/videos/siz-v3.mp4',
   '/videos/siz-v4.mp4',
