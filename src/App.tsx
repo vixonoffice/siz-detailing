@@ -7,7 +7,6 @@ import BeforeAfter from './sections/BeforeAfter';
 import Services from './sections/Services';
 import AboutWhy from './sections/AboutWhy';
 import VideoReel from './sections/VideoReel';
-import GalleryTestimonials from './sections/GalleryTestimonials';
 import Contact from './sections/Contact';
 import Location from './sections/Location';
 
@@ -23,7 +22,6 @@ function App() {
         <Services />
         <AboutWhy />
         <VideoReel />
-        <GalleryTestimonials />
         <Location />
         <Contact />
       </main>
