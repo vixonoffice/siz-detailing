@@ -69,14 +69,14 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <a
                 href="tel:0761639988"
-                className="flex items-center gap-3 text-sm text-white/40 hover:text-white transition-colors duration-200 group"
+                className="flex items-center gap-3 text-sm text-white/55 hover:text-white transition-colors duration-200 group"
               >
                 <div className="w-8 h-8 rounded-lg border border-white/[0.08] flex items-center justify-center group-hover:border-primary/30 transition-colors">
                   <Phone size={14} className="text-primary" />
                 </div>
                 <span>0761 639 988</span>
               </a>
-              <div className="flex items-center gap-3 text-sm text-white/40">
+              <div className="flex items-center gap-3 text-sm text-white/55">
                 <div className="w-8 h-8 rounded-lg border border-white/[0.08] flex items-center justify-center shrink-0">
                   <MapPin size={14} className="text-primary" />
                 </div>
@@ -89,14 +89,14 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/15 text-xs uppercase tracking-wider">
+          <p className="text-white/40 text-xs uppercase tracking-wider">
             &copy; {new Date().getFullYear()} Siz Detailing — Toate drepturile rezervate
           </p>
           <a
             href="https://vixonlab.ro"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/30 hover:text-white transition-colors duration-200"
+            className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/55 hover:text-white transition-colors duration-200"
           >
             <span>Website creat de</span>
             <span className="text-primary group-hover:text-primary/80 font-bold transition-colors">VixonLab</span>
