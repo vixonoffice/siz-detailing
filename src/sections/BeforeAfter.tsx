@@ -9,9 +9,10 @@ interface SliderProps {
   after: string;
   label: string;
   size?: 'large' | 'small';
+  fit?: 'cover' | 'contain';
 }
 
-function Slider({ before, after, label, size = 'small' }: SliderProps) {
+function Slider({ before, after, label, size = 'small', fit = 'cover' }: SliderProps) {
   const [pos, setPos] = useState(50);
   const [dragging, setDragging] = useState(false);
   const [hinted, setHinted] = useState(false);
@@ -57,11 +58,11 @@ function Slider({ before, after, label, size = 'small' }: SliderProps) {
         onTouchMove={(e) => dragging && move(e.touches[0].clientX)}
       >
         {/* After image */}
-        <img src={after} alt="After" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={after} alt="After" className={`absolute inset-0 w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'}`} loading="lazy" />
 
         {/* Before image (clipped) */}
         <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
-          <img src={before} alt="Before" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <img src={before} alt="Before" className={`absolute inset-0 w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'}`} loading="lazy" />
         </div>
 
         {/* Labels */}
@@ -145,7 +146,7 @@ export default function BeforeAfter() {
           transition={{ duration: 0.6 }}
           className="mb-4"
         >
-          <Slider {...pairs[0]} size="large" />
+          <Slider {...pairs[0]} size="large" fit="contain" />
         </motion.div>
 
         {/* Slidere 2 & 3 — side by side */}
