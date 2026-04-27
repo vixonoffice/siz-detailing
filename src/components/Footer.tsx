@@ -49,7 +49,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Navigare</h4>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Navigare</p>
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Contact</h4>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Contact</p>
             <div className="flex flex-col gap-4">
               <a
                 href="tel:0761639988"

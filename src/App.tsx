@@ -1,14 +1,16 @@
+import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
-import Marquee from './components/Marquee';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
-import Stats from './sections/Stats';
-import BeforeAfter from './sections/BeforeAfter';
-import Services from './sections/Services';
-import AboutWhy from './sections/AboutWhy';
-import VideoReel from './sections/VideoReel';
-import Contact from './sections/Contact';
-import Location from './sections/Location';
+
+const Marquee = lazy(() => import('./components/Marquee'));
+const Stats = lazy(() => import('./sections/Stats'));
+const BeforeAfter = lazy(() => import('./sections/BeforeAfter'));
+const Services = lazy(() => import('./sections/Services'));
+const AboutWhy = lazy(() => import('./sections/AboutWhy'));
+const VideoReel = lazy(() => import('./sections/VideoReel'));
+const Location = lazy(() => import('./sections/Location'));
+const Contact = lazy(() => import('./sections/Contact'));
 
 function App() {
   return (
@@ -16,14 +18,16 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Marquee />
-        <Stats />
-        <BeforeAfter />
-        <Services />
-        <AboutWhy />
-        <VideoReel />
-        <Location />
-        <Contact />
+        <Suspense fallback={null}>
+          <Marquee />
+          <Stats />
+          <BeforeAfter />
+          <Services />
+          <AboutWhy />
+          <VideoReel />
+          <Location />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </div>

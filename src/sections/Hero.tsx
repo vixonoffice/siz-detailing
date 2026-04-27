@@ -35,8 +35,8 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: 0.35 }}
           autoPlay muted loop playsInline disablePictureInPicture
-          poster="/images/home.png"
-          preload="auto"
+          poster="/images/home.webp"
+          preload="none"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>

@@ -97,18 +97,18 @@ function Slider({ before, after, label, size = 'small' }: SliderProps) {
 
 const pairs = [
   {
-    before: '/images/bord-murdar.jpeg',
-    after: '/images/bord-curat.jpeg',
+    before: '/images/bord-murdar.webp',
+    after: '/images/bord-curat.webp',
     label: 'Bord TIR — Înainte & După',
   },
   {
-    before: '/images/interior-murdar.jpeg',
-    after: '/images/interior-curat.jpeg',
+    before: '/images/interior-murdar.webp',
+    after: '/images/interior-curat.webp',
     label: 'Interior Sprinter',
   },
   {
-    before: '/images/motor-murdar.jpeg',
-    after: '/images/motor-curat.jpeg',
+    before: '/images/motor-murdar.webp',
+    after: '/images/motor-curat.webp',
     label: 'Compartiment Motor',
   },
 ];

@@ -4,13 +4,13 @@ import { X, ZoomIn } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
 
 const images = [
-  { src: '/images/brand.jpeg', alt: 'Siz Detailing — Studio Rm. Vâlcea' },
-  { src: '/images/munca1.jpeg', alt: 'La lucru în studio' },
-  { src: '/images/bord-curat.jpeg', alt: 'Bord TIR după detailing' },
-  { src: '/images/munca2.jpeg', alt: 'Tratament profesional' },
-  { src: '/images/interior-curat.jpeg', alt: 'Interior curat după detailing' },
-  { src: '/images/scaun.jpeg', alt: 'Scaun BMW impecabil' },
-  { src: '/images/motor-curat.jpeg', alt: 'Compartiment motor curat' },
+  { src: '/images/brand.webp', alt: 'Siz Detailing — Studio Rm. Vâlcea' },
+  { src: '/images/munca1.webp', alt: 'La lucru în studio' },
+  { src: '/images/bord-curat.webp', alt: 'Bord TIR după detailing' },
+  { src: '/images/munca2.webp', alt: 'Tratament profesional' },
+  { src: '/images/interior-curat.webp', alt: 'Interior curat după detailing' },
+  { src: '/images/scaun.webp', alt: 'Scaun BMW impecabil' },
+  { src: '/images/motor-curat.webp', alt: 'Compartiment motor curat' },
 ];
 
 export default function GalleryTestimonials() {
