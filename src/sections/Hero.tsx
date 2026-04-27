@@ -86,8 +86,8 @@ export default function Hero() {
                 textShadow: 'none',
                 filter: 'drop-shadow(0 0 60px rgba(220,38,38,0.3)) drop-shadow(0 0 120px rgba(220,38,38,0.12))',
               }}
-              initial={shouldReduce ? false : { opacity: 0, y: 80, rotateX: 40, filter: 'blur(12px)' }}
-              animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
+              initial={shouldReduce ? false : { opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: easeOut, delay: 0.1 }}
             >
               Siz
@@ -96,8 +96,8 @@ export default function Hero() {
             {/* DETAILING — estompat, 3D reveal cu delay */}
             <motion.span
               className="block text-[3rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] text-white/15 -mt-2 md:-mt-4"
-              initial={shouldReduce ? false : { opacity: 0, y: 60, rotateX: 30, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
+              initial={shouldReduce ? false : { opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: easeOut, delay: 0.28 }}
             >
               Detailing

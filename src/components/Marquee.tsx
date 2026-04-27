@@ -19,7 +19,7 @@ export default function Marquee() {
       <div className="marquee-track flex gap-0">
         {repeated.map((item, i) => (
           <div key={i} className="flex items-center shrink-0">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/25 px-6 whitespace-nowrap">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 px-6 whitespace-nowrap">
               {item}
             </span>
             <span className="text-primary/40 text-xs">·</span>

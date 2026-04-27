@@ -31,9 +31,9 @@ export default function Footer() {
             <a href="#home" className="flex items-center gap-1.5 mb-5">
               <span className="text-2xl font-bold font-display uppercase text-white tracking-tight">Siz</span>
               <span className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-2xl font-bold font-display uppercase text-white/20 tracking-tight">Detailing</span>
+              <span className="text-2xl font-bold font-display uppercase text-white/40 tracking-tight">Detailing</span>
             </a>
-            <p className="text-white/25 text-sm leading-relaxed mb-5">
+            <p className="text-white/50 text-sm leading-relaxed mb-5">
               Detailing interior profesional în Rm. Vâlcea. Curățare prin injecție-extracție pentru mașini, furgoane și TIR-uri.
             </p>
             <a
@@ -49,13 +49,13 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Navigare</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-5">Navigare</p>
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-white/30 hover:text-white transition-colors duration-200 w-fit"
+                  className="text-sm text-white/50 hover:text-white transition-colors duration-200 w-fit"
                 >
                   {link.name}
                 </a>
@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20 mb-5">Contact</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-5">Contact</p>
             <div className="flex flex-col gap-4">
               <a
                 href="tel:0761639988"
