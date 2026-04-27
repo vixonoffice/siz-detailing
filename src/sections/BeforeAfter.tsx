@@ -9,10 +9,9 @@ interface SliderProps {
   after: string;
   label: string;
   size?: 'large' | 'small';
-  afterZoom?: number;
 }
 
-function Slider({ before, after, label, size = 'small', afterZoom = 1 }: SliderProps) {
+function Slider({ before, after, label, size = 'small' }: SliderProps) {
   const [pos, setPos] = useState(50);
   const [dragging, setDragging] = useState(false);
   const [hinted, setHinted] = useState(false);
@@ -42,7 +41,7 @@ function Slider({ before, after, label, size = 'small', afterZoom = 1 }: SliderP
     setPos((x / width) * 100);
   };
 
-  const aspectClass = size === 'large' ? 'aspect-[16/7]' : 'aspect-[4/3]';
+  const aspectClass = size === 'large' ? 'aspect-[16/10]' : 'aspect-[4/3]';
 
   return (
     <div className="space-y-3">
@@ -58,7 +57,7 @@ function Slider({ before, after, label, size = 'small', afterZoom = 1 }: SliderP
         onTouchMove={(e) => dragging && move(e.touches[0].clientX)}
       >
         {/* After image */}
-        <img src={after} alt="After" className="absolute inset-0 w-full h-full object-cover" style={{ transform: `scale(${afterZoom})`, transformOrigin: 'center' }} loading="lazy" />
+        <img src={after} alt="After" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
 
         {/* Before image (clipped) */}
         <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
@@ -146,7 +145,7 @@ export default function BeforeAfter() {
           transition={{ duration: 0.6 }}
           className="mb-4"
         >
-          <Slider {...pairs[0]} size="large" afterZoom={0.7} />
+          <Slider {...pairs[0]} size="large" />
         </motion.div>
 
         {/* Slidere 2 & 3 — side by side */}
