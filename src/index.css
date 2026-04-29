@@ -1,17 +1,31 @@
-@import '@fontsource/outfit/latin-400.css';
-@import '@fontsource/outfit/latin-600.css';
-@import '@fontsource/outfit/latin-700.css';
-@import '@fontsource/outfit/latin-ext-400.css';
-@import '@fontsource/outfit/latin-ext-600.css';
-@import '@fontsource/outfit/latin-ext-700.css';
-@import '@fontsource/dm-sans/latin-400.css';
-@import '@fontsource/dm-sans/latin-500.css';
-@import '@fontsource/dm-sans/latin-ext-400.css';
-@import '@fontsource/dm-sans/latin-ext-500.css';
+@import '@fontsource/archivo-narrow/700.css';
+@import '@fontsource/archivo-narrow/latin-700.css';
+@import '@fontsource/archivo/latin-400.css';
+@import '@fontsource/archivo/latin-600.css';
+@import '@fontsource/archivo/latin-700.css';
+@import '@fontsource/instrument-serif/latin-400-italic.css';
+@import '@fontsource/geist-mono/latin-400.css';
+@import '@fontsource/geist-mono/latin-500.css';
+@import '@fontsource/geist-mono/latin-600.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg:       #0A0A0A;
+  --bg-card:  #121212;
+  --bg-elev:  #161616;
+  --line:     rgba(255,255,255,0.07);
+  --line-2:   rgba(255,255,255,0.14);
+  --red:      #FF2D2D;
+  --red-deep: #C81818;
+  --red-glow: rgba(255,45,45,0.5);
+  --ink:      #FAFAF7;
+  --ink-2:    rgba(250,250,247,0.65);
+  --ink-3:    rgba(250,250,247,0.38);
+  --ink-4:    rgba(250,250,247,0.12);
+}
 
 @layer base {
   html {
@@ -21,92 +35,220 @@
   }
 
   body {
-    background-color: #0A0A0F;
-    color: #F8FAFC;
-    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01";
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    line-height: 0.9;
   }
 }
 
+/* ─── keyframes ─────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-33.333%); }
+  to   { transform: translateX(-33.333%); }
+}
+@keyframes orb-drift {
+  0%   { transform: translate(-65%, -55%) scale(1); }
+  25%  { transform: translate(-40%, -30%) scale(1.08); }
+  50%  { transform: translate(-55%, -70%) scale(0.95); }
+  75%  { transform: translate(-70%, -45%) scale(1.05); }
+  100% { transform: translate(-65%, -55%) scale(1); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0,0) scale(1); opacity: 0.7; }
+  50%       { transform: translate(-30%,-20%) scale(1.15); opacity: 1; }
+}
+@keyframes vpulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+@keyframes scan-sweep {
+  0%   { top: -2%; opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { top: 102%; opacity: 0; }
+}
+@keyframes loader-wipe {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 @layer utilities {
+  /* marquee */
   .marquee-track {
-    animation: marquee 20s linear infinite;
+    animation: marquee 22s linear infinite;
     width: max-content;
   }
-  .marquee-track:hover {
-    animation-play-state: paused;
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* grid background */
+  .velo-grid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--ink-4) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-4) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.2;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
   }
 
-  .text-gradient {
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.7) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* ambient red orb */
+  .velo-orb {
+    position: fixed;
+    width: 90vmax; height: 90vmax;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,45,45,0.14) 0%, rgba(255,45,45,0.05) 30%, transparent 60%);
+    filter: blur(40px);
+    top: 30%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: orb-drift 28s ease-in-out infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .velo-orb-2 {
+    position: fixed;
+    width: 60vmax; height: 60vmax;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120,0,40,0.14) 0%, transparent 65%);
+    filter: blur(60px);
+    bottom: -10%; right: -10%;
+    animation: orb-drift-2 36s ease-in-out infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: -1;
   }
 
-  .text-red {
-    color: #DC2626;
+  /* scan line */
+  .velo-scan {
+    position: fixed;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    animation: scan-sweep 10s linear infinite;
   }
 
-  .card {
-    background: #111118;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 1rem;
+  /* noise overlay */
+  .velo-noise {
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 
+  /* mono label */
+  .mono-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  /* serif accent */
+  .serif-accent {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+
+  /* status dot */
+  .status-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .status-dot .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 10px rgba(74,222,128,0.5);
+    animation: vpulse 1.5s ease-in-out infinite;
+  }
+}
+
+@layer components {
+  /* primary CTA button */
   .btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: #DC2626;
-    color: white;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
+    gap: 10px;
+    background: var(--red);
+    color: var(--ink);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.875rem 2rem;
-    border-radius: 0.75rem;
-    transition: background 0.2s ease;
+    padding: 14px 22px;
+    border: 1px solid var(--red);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
-
   .btn-primary:hover {
-    background: #EF4444;
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
   }
 
+  /* secondary ghost button */
   .btn-secondary {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    border: 1px solid rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.6);
-    font-family: 'Outfit', sans-serif;
+    gap: 10px;
+    border: 1px solid var(--line-2);
+    color: var(--ink-3);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
     font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.875rem 2rem;
-    border-radius: 0.75rem;
-    transition: all 0.2s ease;
+    padding: 14px 22px;
+    transition: border-color 0.3s ease, color 0.3s ease;
   }
-
   .btn-secondary:hover {
-    border-color: rgba(220,38,38,0.4);
-    color: white;
+    border-color: var(--red);
+    color: var(--ink);
   }
 
-  /* Reduce motion */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-    }
+  /* card */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

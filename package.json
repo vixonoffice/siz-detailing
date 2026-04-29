@@ -22,7 +22,11 @@
     "vite": "^8.0.8"
   },
   "dependencies": {
+    "@fontsource/archivo": "^5.2.8",
+    "@fontsource/archivo-narrow": "^5.2.8",
     "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/geist-mono": "^5.2.8",
+    "@fontsource/instrument-serif": "^5.2.8",
     "@fontsource/outfit": "^5.2.8",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",

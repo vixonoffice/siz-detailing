@@ -2,66 +2,96 @@ import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import AutoVideo from '../components/AutoVideo';
 
-const easeOut = [0.16, 1, 0.3, 1];
+const ease = [0.16, 1, 0.3, 1];
 
 export default function Location() {
   return (
-    <section className="py-10 md:py-20 px-6 md:px-14">
+    <section
+      className="py-14 md:py-24 px-6 md:px-14"
+      style={{ borderTop: '1px solid var(--line)' }}
+    >
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: easeOut }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 md:mb-14"
+          transition={{ duration: 0.6, ease }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 md:mb-16"
         >
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-3 block">Unde ne găsești</span>
-            <h2 className="text-4xl md:text-6xl font-bold font-display uppercase leading-tight text-white">
-              Locația <span className="text-white/15">Noastră</span>
+            <span className="mono-label block mb-3" style={{ color: 'rgba(255,45,45,0.7)' }}>
+              Unde ne găsești
+            </span>
+            <h2
+              style={{
+                fontFamily: '"Archivo Narrow", sans-serif',
+                fontWeight: 700,
+                fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
+                letterSpacing: '-0.03em',
+                textTransform: 'uppercase',
+                lineHeight: 0.9,
+                color: 'var(--ink)',
+              }}
+            >
+              Locația <span style={{ color: 'var(--ink-4)' }}>Noastră</span>
             </h2>
           </div>
-          <div className="flex items-center gap-2 text-white/30 text-sm">
-            <MapPin size={14} className="text-primary shrink-0" />
+          <div className="flex items-center gap-2" style={{ color: 'var(--ink-3)', fontSize: '0.875rem' }}>
+            <MapPin size={14} style={{ color: 'var(--red)', flexShrink: 0 }} />
             <span>Calea București 256, Rm. Vâlcea</span>
           </div>
         </motion.div>
 
-        {/* Video locatie — full width, cinematic */}
+        {/* Location video */}
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.8, ease: easeOut }}
-          className="relative overflow-hidden rounded-2xl border border-white/[0.06] mb-4"
-          style={{ aspectRatio: '16/7' }}
+          transition={{ duration: 0.8, ease }}
+          className="relative overflow-hidden mb-3"
+          style={{ aspectRatio: '16/7', border: '1px solid var(--line)' }}
         >
-          <AutoVideo
-            src="/videos/locatie.mp4"
-            className="w-full h-full object-cover"
+          <AutoVideo src="/videos/locatie.mp4" className="w-full h-full object-cover" />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.55), transparent)' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/60 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-6 left-6 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-primary/90 flex items-center justify-center">
-              <MapPin size={14} className="text-white" />
+          <div className="absolute bottom-5 left-5 flex items-center gap-3">
+            <div
+              className="w-8 h-8 flex items-center justify-center"
+              style={{ background: 'var(--red)' }}
+            >
+              <MapPin size={13} style={{ color: 'var(--ink)' }} />
             </div>
             <div>
-              <p className="text-white font-bold font-display uppercase text-sm tracking-wide">Siz Detailing</p>
-              <p className="text-white/50 text-xs">Calea București 256, Rm. Vâlcea</p>
+              <p
+                style={{
+                  fontFamily: '"Archivo Narrow", sans-serif',
+                  fontWeight: 700,
+                  fontSize: '0.8rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '-0.01em',
+                  color: 'var(--ink)',
+                }}
+              >
+                Siz Detailing
+              </p>
+              <p className="mono-label" style={{ color: 'var(--ink-3)', fontSize: '10px' }}>
+                Calea București 256, Rm. Vâlcea
+              </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Google Maps embed */}
+        {/* Google Maps */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-          className="overflow-hidden rounded-2xl border border-white/[0.06]"
-          style={{ height: '340px' }}
+          transition={{ duration: 0.6, ease }}
+          className="overflow-hidden"
+          style={{ height: '320px', border: '1px solid var(--line)' }}
         >
           <iframe
             src="https://www.google.com/maps?q=Calea+Bucuresti+256+Ramnicu+Valcea&output=embed"

@@ -3,8 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing%20interior.%20Trimit%20poze%20cu%20ma%C8%99ina.";
-
-const easeOut = [0.16, 1, 0.3, 1];
+const ease = [0.16, 1, 0.3, 1];
 
 export default function Hero() {
   const shouldReduce = useReducedMotion();
@@ -26,14 +25,23 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-end overflow-hidden bg-[#0A0A0F]">
-
-      {/* Background video */}
+    <section
+      id="home"
+      className="relative overflow-hidden"
+      style={{
+        minHeight: 'calc(100vh - 64px)',
+        paddingTop: '64px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+      }}
+    >
+      {/* Video BG */}
       <div className="absolute inset-0 overflow-hidden">
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.35 }}
+          style={{ opacity: 0.3 }}
           autoPlay muted loop playsInline disablePictureInPicture
           poster="/images/home.webp"
           preload="none"
@@ -42,78 +50,119 @@ export default function Hero() {
         </video>
       </div>
 
-      {/* Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F] via-[#0A0A0F]/75 to-[#0A0A0F]/10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0F]/80 via-transparent to-transparent" />
+      {/* Gradient overlays */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, var(--bg) 0%, rgba(10,10,10,0.75) 50%, rgba(10,10,10,0.15) 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.85) 0%, transparent 60%)' }} />
 
-      {/* Red ambient glow — titlu */}
-      <div className="absolute bottom-[30%] left-[5%] w-[40vw] h-[30vh] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-
-      {/* Linie verticala rosie */}
-      <div className="absolute left-6 md:left-14 top-[20%] h-[55%] w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
+      {/* Vertical red rule */}
+      <div
+        className="absolute hidden md:block"
+        style={{
+          left: '3.5rem',
+          top: '20%',
+          height: '55%',
+          width: '1px',
+          background: 'linear-gradient(to bottom, transparent, var(--red) 50%, transparent)',
+          opacity: 0.5,
+        }}
+      />
 
       {/* Content */}
-      <div className="relative z-10 w-full px-6 md:px-14 pb-12 md:pb-24 pt-36 max-w-7xl mx-auto">
+      <div className="relative z-10 w-full px-6 md:px-14 pb-14 md:pb-24 pt-24 max-w-7xl mx-auto">
 
-        {/* Badge */}
+        {/* Mono label */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: easeOut }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-10"
+          transition={{ duration: 0.5, ease }}
+          className="mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/80">
+          <span
+            className="mono-label inline-flex items-center gap-2 px-3 py-1.5"
+            style={{
+              border: '1px solid rgba(255,45,45,0.2)',
+              background: 'rgba(255,45,45,0.05)',
+              color: 'rgba(255,45,45,0.85)',
+            }}
+          >
+            <span
+              style={{
+                width: '5px', height: '5px',
+                borderRadius: '50%',
+                background: 'var(--red)',
+                display: 'inline-block',
+              }}
+            />
             Rm. Vâlcea · Detailing Interior
           </span>
         </motion.div>
 
-        {/* Titlu cu 3D word reveal */}
-        <div className="overflow-hidden mb-2">
+        {/* Main title */}
+        <div className="overflow-hidden mb-4">
           <motion.h1
-            className="font-display font-bold uppercase leading-[0.85] tracking-tighter"
+            style={{
+              fontFamily: '"Archivo Narrow", sans-serif',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '-0.03em',
+              lineHeight: 0.85,
+            }}
             initial="hidden"
             animate="visible"
           >
-            {/* SIZ — gradient text + glow rosu */}
+            {/* SIZ */}
             <motion.span
-              className="block text-[5.5rem] sm:text-[7.5rem] md:text-[10rem] lg:text-[13rem]"
+              className="block"
               style={{
-                background: 'linear-gradient(135deg, #ffffff 0%, #cccccc 60%, #888888 100%)',
+                fontSize: 'clamp(5rem, 16vw, 14rem)',
+                background: 'linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                textShadow: 'none',
-                filter: 'drop-shadow(0 0 60px rgba(220,38,38,0.3)) drop-shadow(0 0 120px rgba(220,38,38,0.12))',
+                filter: 'drop-shadow(0 0 80px rgba(255,45,45,0.25)) drop-shadow(0 0 160px rgba(255,45,45,0.08))',
               }}
               initial={shouldReduce ? false : { opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: easeOut, delay: 0.1 }}
+              transition={{ duration: 0.9, ease, delay: 0.1 }}
             >
               Siz
             </motion.span>
 
-            {/* DETAILING — estompat, 3D reveal cu delay */}
+            {/* DETAILING — faded */}
             <motion.span
-              className="block text-[3rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] text-white/15 -mt-2 md:-mt-4"
+              className="block"
+              style={{
+                fontSize: 'clamp(2.5rem, 8vw, 7.5rem)',
+                color: 'rgba(250,250,247,0.12)',
+                marginTop: '-0.05em',
+              }}
               initial={shouldReduce ? false : { opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: easeOut, delay: 0.28 }}
+              transition={{ duration: 0.9, ease, delay: 0.25 }}
             >
               Detailing
             </motion.span>
           </motion.h1>
         </div>
 
-        {/* Separator + descriere */}
+        {/* Descriptor */}
         <motion.div
-          className="flex items-start gap-4 mt-6 mb-8 max-w-lg"
+          className="flex items-start gap-4 mt-6 mb-8"
+          style={{ maxWidth: '32rem' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: easeOut, delay: 0.45 }}
+          transition={{ duration: 0.6, ease, delay: 0.42 }}
         >
-          <div className="h-px w-10 bg-primary mt-3 shrink-0" />
-          <p className="text-white/45 text-sm md:text-base leading-relaxed">
+          <div
+            style={{
+              width: '32px',
+              height: '1px',
+              background: 'var(--red)',
+              marginTop: '11px',
+              flexShrink: 0,
+            }}
+          />
+          <p style={{ color: 'var(--ink-3)', fontSize: '0.9rem', lineHeight: 1.7 }}>
             Detailing interior profesional pentru mașini, furgoane și TIR-uri.
             Prețul se face pe loc după poze — fără surprize.
           </p>
@@ -124,24 +173,24 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: easeOut, delay: 0.55 }}
+          transition={{ duration: 0.6, ease, delay: 0.52 }}
         >
           <motion.a
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary justify-center"
-            whileHover={{ scale: 1.03, y: -2 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.2 }}
           >
             Trimite Poze pe WhatsApp
-            <ArrowRight size={16} />
+            <ArrowRight size={14} />
           </motion.a>
           <motion.a
             href="#results"
             className="btn-secondary justify-center"
-            whileHover={{ scale: 1.03, y: -2 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.2 }}
           >
@@ -150,8 +199,6 @@ export default function Hero() {
         </motion.div>
 
       </div>
-
-
     </section>
   );
 }

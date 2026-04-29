@@ -17,9 +17,20 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.04] overflow-hidden">
+    <footer
+      className="relative overflow-hidden"
+      style={{ borderTop: '1px solid var(--line)' }}
+    >
       {/* Ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
+        style={{
+          width: '600px',
+          height: '200px',
+          background: 'radial-gradient(ellipse, rgba(255,45,45,0.05) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-14 pt-12 md:pt-16 pb-8">
 
@@ -28,19 +39,72 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <a href="#home" className="flex items-center gap-1.5 mb-5">
-              <span className="text-2xl font-bold font-display uppercase text-white tracking-tight">Siz</span>
-              <span className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-2xl font-bold font-display uppercase text-white/40 tracking-tight">Detailing</span>
+            <a href="#home" className="flex items-center gap-2 mb-5 w-fit">
+              <div
+                style={{
+                  display: 'inline-flex',
+                  width: '24px',
+                  height: '24px',
+                  border: '2px solid var(--red)',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '10px',
+                  fontFamily: '"Archivo Narrow", sans-serif',
+                  fontWeight: 800,
+                  color: 'var(--ink)',
+                  position: 'relative',
+                  flexShrink: 0,
+                }}
+              >
+                S
+                <span style={{
+                  position: 'absolute', right: '-4px', bottom: '-4px',
+                  width: '6px', height: '6px', background: 'var(--red)',
+                }} />
+              </div>
+              <span
+                style={{
+                  fontFamily: '"Archivo Narrow", sans-serif',
+                  fontWeight: 800,
+                  fontSize: '1.2rem',
+                  letterSpacing: '-0.04em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink)',
+                }}
+              >
+                Siz
+              </span>
+              <span
+                style={{
+                  fontFamily: '"Archivo Narrow", sans-serif',
+                  fontWeight: 800,
+                  fontSize: '1.2rem',
+                  letterSpacing: '-0.04em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-3)',
+                }}
+              >
+                Detailing
+              </span>
             </a>
-            <p className="text-white/50 text-sm leading-relaxed mb-5">
+            <p className="mb-5 text-sm leading-relaxed" style={{ color: 'var(--ink-3)' }}>
               Detailing interior profesional în Rm. Vâlcea. Curățare prin injecție-extracție pentru mașini, furgoane și TIR-uri.
             </p>
             <a
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#25D366] border border-[#25D366]/20 px-4 py-2.5 rounded-xl hover:bg-[#25D366]/10 transition-colors duration-200"
+              className="inline-flex items-center gap-2 transition-colors duration-200"
+              style={{
+                color: '#25D366',
+                fontFamily: '"Geist Mono", monospace',
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                border: '1px solid rgba(37,211,102,0.2)',
+                padding: '8px 14px',
+              }}
             >
               <WhatsAppIcon />
               Cere ofertă
@@ -49,13 +113,14 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-5">Navigare</p>
+            <p className="mono-label mb-5" style={{ color: 'var(--ink-3)' }}>Navigare</p>
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-white/50 hover:text-white transition-colors duration-200 w-fit"
+                  className="w-fit text-sm hover:text-[var(--ink)] transition-colors duration-200"
+                  style={{ color: 'var(--ink-3)' }}
                 >
                   {link.name}
                 </a>
@@ -65,20 +130,27 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-5">Contact</p>
+            <p className="mono-label mb-5" style={{ color: 'var(--ink-3)' }}>Contact</p>
             <div className="flex flex-col gap-4">
               <a
                 href="tel:0761639988"
-                className="flex items-center gap-3 text-sm text-white/55 hover:text-white transition-colors duration-200 group"
+                className="flex items-center gap-3 text-sm hover:text-[var(--ink)] transition-colors duration-200 group"
+                style={{ color: 'var(--ink-3)' }}
               >
-                <div className="w-8 h-8 rounded-lg border border-white/[0.08] flex items-center justify-center group-hover:border-primary/30 transition-colors">
-                  <Phone size={14} className="text-primary" />
+                <div
+                  className="w-8 h-8 flex items-center justify-center group-hover:border-[var(--red)] transition-colors"
+                  style={{ border: '1px solid var(--line)' }}
+                >
+                  <Phone size={13} style={{ color: 'var(--red)' }} />
                 </div>
                 <span>0761 639 988</span>
               </a>
-              <div className="flex items-center gap-3 text-sm text-white/55">
-                <div className="w-8 h-8 rounded-lg border border-white/[0.08] flex items-center justify-center shrink-0">
-                  <MapPin size={14} className="text-primary" />
+              <div className="flex items-center gap-3 text-sm" style={{ color: 'var(--ink-3)' }}>
+                <div
+                  className="w-8 h-8 flex items-center justify-center shrink-0"
+                  style={{ border: '1px solid var(--line)' }}
+                >
+                  <MapPin size={13} style={{ color: 'var(--red)' }} />
                 </div>
                 <span>Calea București 256, Rm. Vâlcea</span>
               </div>
@@ -88,21 +160,28 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-xs uppercase tracking-wider">
+        <div
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          style={{ borderTop: '1px solid var(--line)' }}
+        >
+          <p className="mono-label" style={{ color: 'var(--ink-4)' }}>
             &copy; {new Date().getFullYear()} Siz Detailing — Toate drepturile rezervate
           </p>
           <a
             href="https://vixonlab.ro"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/55 hover:text-white transition-colors duration-200"
+            className="group flex items-center gap-2 transition-colors duration-200 hover:text-[var(--ink)]"
+            style={{
+              fontFamily: '"Geist Mono", monospace',
+              fontSize: '11px',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              color: 'var(--ink-3)',
+            }}
           >
             <span>Website creat de</span>
-            <span className="text-primary group-hover:text-primary/80 font-bold transition-colors">VixonLab</span>
-            <svg viewBox="0 0 16 16" fill="none" className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <span style={{ color: 'var(--red)', fontWeight: 700 }}>VixonLab</span>
           </a>
         </div>
 

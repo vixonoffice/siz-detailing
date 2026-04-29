@@ -30,28 +30,40 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-const easeOut = [0.16, 1, 0.3, 1];
+const ease = [0.16, 1, 0.3, 1];
 
 export default function Stats() {
   const shouldReduce = useReducedMotion();
 
   return (
-    <section className="py-12 md:py-28 px-6 md:px-14">
+    <section
+      className="px-6 md:px-14 py-14 md:py-24"
+      style={{ borderBottom: '1px solid var(--line)' }}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-3 gap-6 md:gap-10">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={shouldReduce ? false : { opacity: 0, y: 30, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={shouldReduce ? false : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: i * 0.12, ease: easeOut }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease }}
               className="text-center md:text-left"
             >
-              <div className="text-3xl sm:text-4xl md:text-6xl font-bold font-display text-white leading-none mb-3">
+              <div
+                className="leading-none mb-3"
+                style={{
+                  fontFamily: '"Archivo Narrow", sans-serif',
+                  fontWeight: 700,
+                  fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+                  letterSpacing: '-0.04em',
+                  color: 'var(--ink)',
+                }}
+              >
                 <Counter target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.18em] text-white/25">
+              <div className="mono-label" style={{ color: 'var(--ink-4)' }}>
                 {stat.label}
               </div>
             </motion.div>
