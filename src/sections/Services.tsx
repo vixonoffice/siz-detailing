@@ -165,7 +165,7 @@ export default function Services() {
                       >
                         <p
                           className="flex-1"
-                          style={{ color: 'var(--ink-2)', fontSize: '0.9rem', lineHeight: 1.75 }}
+                          style={{ color: 'var(--ink-2)', fontSize: 'clamp(0.9rem, 3.5vw, 0.95rem)', lineHeight: 1.75 }}
                         >
                           {s.description}
                         </p>

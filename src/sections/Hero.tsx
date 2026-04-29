@@ -162,7 +162,7 @@ export default function Hero() {
               flexShrink: 0,
             }}
           />
-          <p style={{ color: 'var(--ink-3)', fontSize: '0.9rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-3)', fontSize: 'clamp(0.9rem, 3.5vw, 1rem)', lineHeight: 1.7 }}>
             Detailing interior profesional pentru mașini, furgoane și TIR-uri.
             Prețul se face pe loc după poze — fără surprize.
           </p>

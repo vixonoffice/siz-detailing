@@ -63,7 +63,7 @@ export default function Stats() {
               >
                 <Counter target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="mono-label" style={{ color: 'var(--ink-4)' }}>
+              <div style={{ color: 'var(--ink-4)', fontFamily: '"Geist Mono", monospace', fontSize: '10px', fontWeight: 500, letterSpacing: '0.07em', textTransform: 'uppercase', marginTop: '4px' }}>
                 {stat.label}
               </div>
             </motion.div>

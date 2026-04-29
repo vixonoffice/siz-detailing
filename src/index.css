@@ -245,6 +245,21 @@
   }
 }
 
+/* ─── mobile text improvements ─────────────────────────── */
+@media (max-width: 640px) {
+  /* body text readable */
+  body { font-size: 15px; }
+
+  /* description paragraphs */
+  p { font-size: 0.9rem !important; line-height: 1.7 !important; }
+
+  /* mono labels — slightly bigger on mobile */
+  .mono-label { font-size: 10px !important; }
+
+  /* section padding tighter */
+  section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   * {

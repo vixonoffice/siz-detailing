@@ -78,7 +78,7 @@ export default function AboutWhy() {
               <br />Impecabil.
             </h3>
 
-            <div className="space-y-4 mb-10" style={{ color: 'var(--ink-3)', fontSize: '0.875rem', lineHeight: 1.75 }}>
+            <div className="space-y-4 mb-10" style={{ color: 'var(--ink-3)', fontSize: 'clamp(0.9rem, 3.5vw, 0.95rem)', lineHeight: 1.75 }}>
               <p>
                 Suntem Siz Detailing din Rm. Vâlcea — specializați în curățarea interiorului auto prin metoda injecție-extracție.
               </p>

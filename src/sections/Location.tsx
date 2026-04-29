@@ -50,7 +50,7 @@ export default function Location() {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, ease }}
           className="relative overflow-hidden mb-3"
-          style={{ aspectRatio: '16/7', border: '1px solid var(--line)' }}
+          style={{ aspectRatio: '16/9', border: '1px solid var(--line)' }}
         >
           <AutoVideo src="/videos/locatie.mp4" className="w-full h-full object-cover" />
           <div
@@ -91,7 +91,7 @@ export default function Location() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, ease }}
           className="overflow-hidden"
-          style={{ height: '320px', border: '1px solid var(--line)' }}
+          style={{ height: '240px', border: '1px solid var(--line)' }}
         >
           <iframe
             src="https://www.google.com/maps?q=Calea+Bucuresti+256+Ramnicu+Valcea&output=embed"

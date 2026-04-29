@@ -120,16 +120,16 @@ function BACard({ before, after, num, title, meta, index }: typeof pairs[0] & { 
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
           style={{
-            width: '34px',
-            height: '34px',
+            width: '36px',
+            height: '36px',
             background: 'var(--red)',
             borderRadius: '50%',
-            color: 'var(--ink)',
-            fontSize: '13px',
             boxShadow: '0 0 20px rgba(255,45,45,0.6)',
           }}
         >
-          ↔
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 8h12M5 5l-3 3 3 3M11 5l3 3-3 3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
       </div>
 

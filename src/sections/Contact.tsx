@@ -45,7 +45,7 @@ export default function Contact() {
           </h2>
           <p
             className="max-w-md mx-auto mb-12"
-            style={{ color: 'var(--ink-3)', fontSize: '0.95rem', lineHeight: 1.7 }}
+            style={{ color: 'var(--ink-3)', fontSize: 'clamp(0.9rem, 3.5vw, 1rem)', lineHeight: 1.7 }}
           >
             Trimite-ne câteva poze cu interiorul mașinii pe WhatsApp și îți facem oferta pe loc.
             Fără formulare, fără așteptare.
