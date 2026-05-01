@@ -14,15 +14,19 @@ export default function AutoVideo({ src, className = '', style }: AutoVideoProps
     if (!v) return;
     v.muted = true;
     (v as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
-    v.play().catch(() => {});
 
-    const forcePlay = () => { v.muted = true; v.play().catch(() => {}); };
-    document.addEventListener('touchstart', forcePlay, { once: true, passive: true });
-    document.addEventListener('scroll', forcePlay, { once: true, passive: true });
-    return () => {
-      document.removeEventListener('touchstart', forcePlay);
-      document.removeEventListener('scroll', forcePlay);
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(v);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -30,12 +34,11 @@ export default function AutoVideo({ src, className = '', style }: AutoVideoProps
       ref={ref}
       className={className}
       style={style}
-      autoPlay
       muted
       loop
       playsInline
       disablePictureInPicture
-      preload="auto"
+      preload="none"
     >
       <source src={src} type="video/mp4" />
     </video>
