@@ -81,10 +81,10 @@ function BACard({ before, after, num, title, meta, index }: typeof pairs[0] & { 
       onTouchEnd={() => setDragging(false)}
       onTouchMove={(e) => { dragging && move(e.touches[0].clientX); }}
     >
-      {/* Before — base layer, always full */}
+      {/* After — base layer, always full */}
       <img
-        src={before}
-        alt="Înainte"
+        src={after}
+        alt="După"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{ filter: 'contrast(1.05)' }}
         loading="lazy"
@@ -96,8 +96,8 @@ function BACard({ before, after, num, title, meta, index }: typeof pairs[0] & { 
         style={{ width: `${pos}%` }}
       >
         <img
-          src={after}
-          alt="După"
+          src={before}
+          alt="Înainte"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'contrast(1.05)' }}
           loading="lazy"
