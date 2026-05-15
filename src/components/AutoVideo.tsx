@@ -2,11 +2,12 @@ import { useEffect, useRef } from 'react';
 
 interface AutoVideoProps {
   src: string;
+  poster?: string;
   className?: string;
   style?: React.CSSProperties;
 }
 
-export default function AutoVideo({ src, className = '', style }: AutoVideoProps) {
+export default function AutoVideo({ src, poster, className = '', style }: AutoVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -15,7 +16,22 @@ export default function AutoVideo({ src, className = '', style }: AutoVideoProps
     v.muted = true;
     (v as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
 
-    const observer = new IntersectionObserver(
+    // Stage 1 — start buffering ~600px BEFORE the tile scrolls into view,
+    // so the clip is ready by the time it's actually on screen.
+    const preloader = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.preload = 'auto';
+          v.load();
+          preloader.disconnect();
+        }
+      },
+      { rootMargin: '600px 0px' }
+    );
+    preloader.observe(v);
+
+    // Stage 2 — only play while genuinely visible (no off-screen CPU drain).
+    const player = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           v.play().catch(() => {});
@@ -25,8 +41,12 @@ export default function AutoVideo({ src, className = '', style }: AutoVideoProps
       },
       { threshold: 0.1 }
     );
-    observer.observe(v);
-    return () => observer.disconnect();
+    player.observe(v);
+
+    return () => {
+      preloader.disconnect();
+      player.disconnect();
+    };
   }, []);
 
   return (
@@ -34,11 +54,12 @@ export default function AutoVideo({ src, className = '', style }: AutoVideoProps
       ref={ref}
       className={className}
       style={style}
+      poster={poster}
       muted
       loop
       playsInline
       disablePictureInPicture
-      preload="none"
+      preload="metadata"
     >
       <source src={src} type="video/mp4" />
     </video>

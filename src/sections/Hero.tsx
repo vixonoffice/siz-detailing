@@ -45,7 +45,7 @@ export default function Hero() {
           style={{ opacity: 0.42 }}
           autoPlay muted loop playsInline disablePictureInPicture
           poster="/images/home.webp"
-          preload="none"
+          preload="auto"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
