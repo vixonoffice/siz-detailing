@@ -52,7 +52,7 @@ export default function Location() {
           className="relative overflow-hidden mb-3"
           style={{ aspectRatio: '16/9', border: '1px solid var(--line)' }}
         >
-          <AutoVideo src="/videos/locatie.mp4" poster="/images/locatie-poster.jpg" className="w-full h-full object-cover" />
+          <AutoVideo src="/videos/locatie-v2.mp4" poster="/images/locatie-poster.jpg" className="w-full h-full object-cover" />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.55), transparent)' }}

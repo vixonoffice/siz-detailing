@@ -47,7 +47,7 @@ export default function Hero() {
           poster="/images/home.webp"
           preload="auto"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/hero-v2.mp4" type="video/mp4" />
         </video>
       </div>
 
