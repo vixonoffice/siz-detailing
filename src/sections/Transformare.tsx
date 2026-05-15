@@ -187,8 +187,6 @@ function ScrubScene({ reduced }: { reduced: boolean }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const durRef = useRef(0);
-  const pendingRef = useRef(0);
-  const seekingRef = useRef(false);
   const [stage, setStage] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -207,25 +205,54 @@ function ScrubScene({ reduced }: { reduced: boolean }) {
   const barWidth = useTransform(driver, (v) => `${Math.min(v * 100, 100)}%`);
   const hintOpacity = useTransform(driver, [0, 0.04], [1, 0]);
 
-  const applySeek = (t: number) => {
-    const v = videoRef.current;
-    if (!v) return;
-    pendingRef.current = t;
-    if (seekingRef.current) return;
-    seekingRef.current = true;
-    try {
-      v.currentTime = t;
-    } catch {
-      seekingRef.current = false;
-    }
-  };
-
   useMotionValueEvent(driver, 'change', (v) => {
     const next = stageFor(v);
     setStage((s) => (s === next ? s : next));
-    const d = durRef.current;
-    if (d > 0) applySeek(Math.min(v, 0.999) * d);
   });
+
+  // Drive the playback head from a rAF loop that always chases the
+  // latest scroll position (smooth) rather than serialising seeks.
+  useEffect(() => {
+    const v = videoRef.current;
+    const wrap = wrapRef.current;
+    if (!v || !wrap) return;
+    let raf = 0;
+    let active = false;
+    let last = -1;
+    const tick = () => {
+      const d = durRef.current;
+      if (d > 0 && v.readyState >= 2) {
+        const t = Math.min(driver.get(), 0.999) * d;
+        if (Math.abs(t - last) > d * 0.0015) {
+          last = t;
+          try {
+            v.currentTime = t;
+          } catch {
+            /* noop */
+          }
+        }
+      }
+      if (active) raf = requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !active) {
+          active = true;
+          raf = requestAnimationFrame(tick);
+        } else if (!e.isIntersecting) {
+          active = false;
+          cancelAnimationFrame(raf);
+        }
+      },
+      { rootMargin: '60% 0px' }
+    );
+    io.observe(wrap);
+    return () => {
+      active = false;
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
+  }, [driver]);
 
   return (
     <section
@@ -258,15 +285,6 @@ function ScrubScene({ reduced }: { reduced: boolean }) {
                       v.currentTime = 0.001;
                     } catch {
                       /* noop */
-                    }
-                  }}
-                  onSeeked={() => {
-                    const v = videoRef.current;
-                    if (!v) return;
-                    if (Math.abs(v.currentTime - pendingRef.current) > 0.04) {
-                      v.currentTime = pendingRef.current;
-                    } else {
-                      seekingRef.current = false;
                     }
                   }}
                 >
@@ -351,10 +369,11 @@ function LoopScene() {
                 ref={videoRef}
                 className="w-full h-full object-cover"
                 poster="/images/transformare-poster.jpg"
+                autoPlay
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="metadata"
                 disablePictureInPicture
               >
                 <source src="/videos/transformare.mp4" type="video/mp4" />
