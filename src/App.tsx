@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import Loader from './components/Loader';
+import SmoothScroll from './components/SmoothScroll';
+import ScrollProgress from './components/ScrollProgress';
 
 const Marquee = lazy(() => import('./components/Marquee'));
 const Stats = lazy(() => import('./sections/Stats'));
@@ -29,6 +31,9 @@ function App() {
       <div className="velo-scan" />
       <div className="velo-noise" />
 
+      <ScrollProgress />
+
+      <SmoothScroll>
       <div
         className="min-h-screen text-[var(--ink)]"
         style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.4s ease' }}
@@ -50,6 +55,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      </SmoothScroll>
     </>
   );
 }

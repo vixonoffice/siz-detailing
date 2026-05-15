@@ -1,39 +1,49 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
-import { ScrollTrigger } from '../lib/gsap';
-import { gsap } from '../lib/gsap';
 import { useIsDesktop } from '../hooks/useIsDesktop';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function SmoothScroll({ children }: Props) {
+export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const isDesktop = useIsDesktop();
-  const lenisRef = useRef<Lenis | null>(null);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
-    if (!isDesktop) return;
+    if (!isDesktop || reduced) return;
 
     const lenis = new Lenis({
-      lerp: 0.1,
+      duration: 1.1,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
 
-    lenisRef.current = lenis;
+    let raf = 0;
+    const loop = (time: number) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
 
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement)?.closest(
+        'a[href^="#"]'
+      ) as HTMLAnchorElement | null;
+      if (!a) return;
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const el = document.querySelector(id);
+      if (el) {
+        e.preventDefault();
+        lenis.scrollTo(el as HTMLElement, { offset: -64 });
+      }
+    };
+    document.addEventListener('click', onClick);
 
     return () => {
+      document.removeEventListener('click', onClick);
+      cancelAnimationFrame(raf);
       lenis.destroy();
-      lenisRef.current = null;
     };
-  }, [isDesktop]);
+  }, [isDesktop, reduced]);
 
   return <>{children}</>;
 }

@@ -1,11 +1,10 @@
-import { useRef, ReactNode } from 'react';
-import { gsap } from '../lib/gsap';
+import { useRef, type ReactNode } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useIsDesktop } from '../hooks/useIsDesktop';
 
 interface Props {
   children: ReactNode;
   className?: string;
-  as?: 'a' | 'button';
   href?: string;
   target?: string;
   rel?: string;
@@ -16,32 +15,33 @@ interface Props {
 export default function MagneticBtn({
   children,
   className,
-  as: Tag = 'a',
   href,
   target,
   rel,
   onClick,
   strength = 0.35,
 }: Props) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const isDesktop = useIsDesktop();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 200, damping: 15, mass: 0.4 });
+  const sy = useSpring(y, { stiffness: 200, damping: 15, mass: 0.4 });
 
   const onMove = (e: React.MouseEvent) => {
     if (!isDesktop || !ref.current) return;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
-    const x = (e.clientX - left - width  / 2) * strength;
-    const y = (e.clientY - top  - height / 2) * strength;
-    gsap.to(ref.current, { x, y, duration: 0.4, ease: 'power3.out' });
+    x.set((e.clientX - left - width / 2) * strength);
+    y.set((e.clientY - top - height / 2) * strength);
   };
 
   const onLeave = () => {
-    if (!ref.current) return;
-    gsap.to(ref.current, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+    x.set(0);
+    y.set(0);
   };
 
   return (
-    <Tag
-      // @ts-expect-error — dynamic tag
+    <motion.a
       ref={ref}
       className={className}
       href={href}
@@ -50,8 +50,9 @@ export default function MagneticBtn({
       onClick={onClick}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
+      style={{ x: sx, y: sy, display: 'inline-flex' }}
     >
       {children}
-    </Tag>
+    </motion.a>
   );
 }

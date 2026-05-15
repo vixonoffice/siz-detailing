@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Menu } from 'lucide-react';
+import MagneticBtn from './MagneticBtn';
 
 const navLinks = [
   { name: 'Servicii', href: '#services' },
@@ -70,7 +71,7 @@ export default function Navbar() {
               alt="Siz Detailing Auto — Passion for Perfection"
               width={1245}
               height={447}
-              style={{ height: '38px', width: 'auto', display: 'block' }}
+              style={{ height: '54px', width: 'auto', display: 'block' }}
             />
           </a>
 
@@ -114,14 +115,14 @@ export default function Navbar() {
               <span className="dot" />
               Disponibil
             </span>
-            <a
+            <MagneticBtn
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
             >
               Cere Ofertă
-            </a>
+            </MagneticBtn>
           </div>
 
           {/* Mobile toggle */}

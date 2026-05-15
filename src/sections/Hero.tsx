@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import MagneticBtn from '../components/MagneticBtn';
 
 const WA_LINK = "https://wa.me/40761639988?text=Bun%C4%83!%20A%C8%99%20vrea%20o%20ofert%C4%83%20pentru%20detailing%20interior.%20Trimit%20poze%20cu%20ma%C8%99ina.";
 const ease = [0.16, 1, 0.3, 1];
@@ -41,7 +42,7 @@ export default function Hero() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.3 }}
+          style={{ opacity: 0.42 }}
           autoPlay muted loop playsInline disablePictureInPicture
           poster="/images/home.webp"
           preload="none"
@@ -175,18 +176,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease, delay: 0.52 }}
         >
-          <motion.a
+          <MagneticBtn
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary justify-center"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.2 }}
           >
             Trimite Poze pe WhatsApp
             <ArrowRight size={14} />
-          </motion.a>
+          </MagneticBtn>
           <motion.a
             href="#results"
             className="btn-secondary justify-center"
@@ -199,6 +197,24 @@ export default function Hero() {
         </motion.div>
 
       </div>
+
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 bottom-6 z-10 flex flex-col items-center gap-1 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <span className="mono-label" style={{ color: 'var(--ink-3)' }}>
+          Scroll
+        </span>
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ color: 'var(--red)' }}
+        >
+          <ChevronDown size={16} />
+        </motion.span>
+      </motion.div>
     </section>
   );
 }
