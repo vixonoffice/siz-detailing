@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sizdetailing.ro/sitemap.xml
