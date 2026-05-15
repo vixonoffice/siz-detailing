@@ -8,9 +8,9 @@ const WA_LINK =
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const STAGES = [
-  { label: 'Mizeria', start: 0.0 },
+  { label: 'Starea inițială', start: 0.0 },
   { label: 'Demontaj total', start: 0.25 },
-  { label: 'Abur & frecat', start: 0.37 },
+  { label: 'Curățare în profunzime', start: 0.37 },
   { label: 'Remontaj', start: 0.70 },
   { label: 'Impecabil', start: 0.82 },
 ];
