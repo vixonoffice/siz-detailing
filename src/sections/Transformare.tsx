@@ -288,7 +288,7 @@ function ScrubScene({ reduced }: { reduced: boolean }) {
                     }
                   }}
                 >
-                  <source src="/videos/transformare-scrub.mp4" type="video/mp4" />
+                  <source src="/videos/transformare-scrub-2.mp4" type="video/mp4" />
                 </video>
 
                 <motion.div
@@ -376,7 +376,7 @@ function LoopScene() {
                 preload="metadata"
                 disablePictureInPicture
               >
-                <source src="/videos/transformare.mp4" type="video/mp4" />
+                <source src="/videos/transformare-2.mp4" type="video/mp4" />
               </video>
             </VideoFrame>
           </motion.div>
