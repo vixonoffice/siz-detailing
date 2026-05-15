@@ -64,46 +64,14 @@ export default function Navbar() {
           }}
         >
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 z-50 w-fit">
-            <div
-              style={{
-                display: 'inline-flex',
-                width: '28px',
-                height: '28px',
-                border: '2px solid var(--red)',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontFamily: '"Archivo Narrow", sans-serif',
-                fontWeight: 800,
-                color: 'var(--ink)',
-                position: 'relative',
-              }}
-            >
-              S
-              <span
-                style={{
-                  position: 'absolute',
-                  right: '-5px',
-                  bottom: '-5px',
-                  width: '7px',
-                  height: '7px',
-                  background: 'var(--red)',
-                }}
-              />
-            </div>
-            <span
-              style={{
-                fontFamily: '"Archivo Narrow", sans-serif',
-                fontWeight: 800,
-                fontSize: '20px',
-                letterSpacing: '-0.04em',
-                textTransform: 'uppercase',
-                color: 'var(--ink)',
-              }}
-            >
-              Siz Detailing
-            </span>
+          <a href="#home" className="flex items-center z-50 w-fit" aria-label="Siz Detailing — acasă">
+            <img
+              src="/images/sizlogo.png"
+              alt="Siz Detailing Auto — Passion for Perfection"
+              width={1245}
+              height={447}
+              style={{ height: '38px', width: 'auto', display: 'block' }}
+            />
           </a>
 
           {/* Desktop center links */}

@@ -39,53 +39,14 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <a href="#home" className="flex items-center gap-2 mb-5 w-fit">
-              <div
-                style={{
-                  display: 'inline-flex',
-                  width: '24px',
-                  height: '24px',
-                  border: '2px solid var(--red)',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '10px',
-                  fontFamily: '"Archivo Narrow", sans-serif',
-                  fontWeight: 800,
-                  color: 'var(--ink)',
-                  position: 'relative',
-                  flexShrink: 0,
-                }}
-              >
-                S
-                <span style={{
-                  position: 'absolute', right: '-4px', bottom: '-4px',
-                  width: '6px', height: '6px', background: 'var(--red)',
-                }} />
-              </div>
-              <span
-                style={{
-                  fontFamily: '"Archivo Narrow", sans-serif',
-                  fontWeight: 800,
-                  fontSize: '1.2rem',
-                  letterSpacing: '-0.04em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink)',
-                }}
-              >
-                Siz
-              </span>
-              <span
-                style={{
-                  fontFamily: '"Archivo Narrow", sans-serif',
-                  fontWeight: 800,
-                  fontSize: '1.2rem',
-                  letterSpacing: '-0.04em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink-3)',
-                }}
-              >
-                Detailing
-              </span>
+            <a href="#home" className="flex items-center mb-5 w-fit" aria-label="Siz Detailing — acasă">
+              <img
+                src="/images/sizlogo.png"
+                alt="Siz Detailing Auto — Passion for Perfection"
+                width={1245}
+                height={447}
+                style={{ height: '44px', width: 'auto', display: 'block' }}
+              />
             </a>
             <p className="mb-5 text-sm leading-relaxed" style={{ color: 'var(--ink-3)' }}>
               Detailing interior profesional în Rm. Vâlcea. Curățare prin injecție-extracție pentru mașini, furgoane și TIR-uri.
