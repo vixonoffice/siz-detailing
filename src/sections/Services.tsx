@@ -8,32 +8,32 @@ const services = [
   {
     title: 'Curățare Mochetă',
     description: 'Injecție-extracție profesională cu aparat Mytee. Murdărie adâncă, pete vechi, sare de iarnă, miros de țigară — eliminate complet. Fibra curățată până la bază, uscată complet.',
-    detail: 'Timp estimat: 1–2h · Valabil pentru toate tipurile de vehicule',
+    detail: 'Valabil pentru toate tipurile de vehicule',
   },
   {
     title: 'Scaune & Banchetă',
     description: 'Curățare injecție-extracție pentru tapițerie textil și piele. Scaunele arată și miros a nou după tratament. Petele de cafea, sânge, alimente — fără urmă.',
-    detail: 'Timp estimat: 1–3h · Textil și piele ecologică',
+    detail: 'Textil și piele ecologică',
   },
   {
     title: 'Degresare Plastice',
     description: 'Bord, console, portiere, toate suprafețele din plastic — curățate și tratate cu produse profesionale. Fără urme albe, fără străluciri ieftine.',
-    detail: 'Timp estimat: 30min–1h · Inclus în pachetul complet',
+    detail: 'Inclus în pachetul complet',
   },
   {
     title: 'Curățare Chedere',
     description: 'Chederele sunt punctul unde se adunează cel mai mult murdăria și mucegaiul. Le tratăm corect și le protejăm pentru durabilitate maximă.',
-    detail: 'Timp estimat: 30min · Recomandat sezonier',
+    detail: 'Recomandat sezonier',
   },
   {
     title: 'Curățare Portbagaj',
     description: 'Portbagaj complet — mochetă, plastice, cotiere, fiecare colț. Indiferent dacă transporti materiale de construcție sau faci naveta zilnic.',
-    detail: 'Timp estimat: 30min–1h · Injecție-extracție sau uscat',
+    detail: 'Injecție-extracție sau uscat',
   },
   {
     title: 'Detailing Motor',
     description: 'Degresare completă a compartimentului motor. Eliminăm petele de ulei, praful și murdăria acumulată. Aspect impecabil, fără risc de deteriorare a componentelor electrice.',
-    detail: 'Timp estimat: 45min–1.5h · Protecție plastice incluse',
+    detail: 'Protecție plastice incluse',
   },
 ];
 

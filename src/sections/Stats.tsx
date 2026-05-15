@@ -3,7 +3,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 const stats = [
   { value: 200, suffix: '+', label: 'Mașini Detaliate' },
-  { value: 8, suffix: 'h', label: 'Timp Maxim de Lucru' },
+  { value: 0, suffix: '', label: 'Compromisuri' },
   { value: 100, suffix: '%', label: 'Clienți Mulțumiți' },
 ];
 
