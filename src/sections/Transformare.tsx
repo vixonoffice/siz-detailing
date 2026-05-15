@@ -5,6 +5,7 @@ import {
   useSpring,
   useTransform,
   useMotionValueEvent,
+  type MotionValue,
 } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useIsDesktop } from '../hooks/useIsDesktop';
@@ -15,7 +16,6 @@ const WA_LINK =
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-// Stage start fractions — aligned to the montage arc
 const STAGES = [
   { label: 'Mizeria', start: 0.0 },
   { label: 'Demontaj total', start: 0.25 },
@@ -134,7 +134,7 @@ function VideoFrame({
 }: {
   children: React.ReactNode;
   stageLabel: string;
-  barWidth: string | import('framer-motion').MotionValue<string>;
+  barWidth: string | MotionValue<string>;
 }) {
   return (
     <div className="relative w-full max-w-[420px]" style={{ aspectRatio: '9 / 16' }}>
@@ -183,44 +183,48 @@ function VideoFrame({
 }
 
 /* ── Desktop: scroll-scrubbed scene ────────────────────── */
-function ScrubScene() {
+function ScrubScene({ reduced }: { reduced: boolean }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [armed, setArmed] = useState(false);
+  const durRef = useRef(0);
+  const pendingRef = useRef(0);
+  const seekingRef = useRef(false);
   const [stage, setStage] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: wrapRef,
     offset: ['start start', 'end end'],
   });
-  const smooth = useSpring(scrollYProgress, {
+  const spring = useSpring(scrollYProgress, {
     stiffness: 130,
     damping: 26,
     restDelta: 0.0005,
   });
-  const barWidth = useTransform(smooth, (v) => `${Math.min(v * 100, 100)}%`);
-  const hintOpacity = useTransform(smooth, [0, 0.04], [1, 0]);
+  // Scrubbing is user-driven, so it stays on under reduced-motion —
+  // we only drop the inertial spring smoothing in that case.
+  const driver = reduced ? scrollYProgress : spring;
 
-  // Mount/buffer the video only when the section is approaching
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setArmed(true),
-      { rootMargin: '120% 0px' }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const barWidth = useTransform(driver, (v) => `${Math.min(v * 100, 100)}%`);
+  const hintOpacity = useTransform(driver, [0, 0.04], [1, 0]);
 
-  // Drive playback head + stage from smoothed scroll progress
-  useMotionValueEvent(smooth, 'change', (v) => {
+  const applySeek = (t: number) => {
+    const v = videoRef.current;
+    if (!v) return;
+    pendingRef.current = t;
+    if (seekingRef.current) return;
+    seekingRef.current = true;
+    try {
+      v.currentTime = t;
+    } catch {
+      seekingRef.current = false;
+    }
+  };
+
+  useMotionValueEvent(driver, 'change', (v) => {
     const next = stageFor(v);
     setStage((s) => (s === next ? s : next));
-    const vid = videoRef.current;
-    if (vid && vid.duration) {
-      vid.currentTime = Math.min(v, 0.999) * vid.duration;
-    }
+    const d = durRef.current;
+    if (d > 0) applySeek(Math.min(v, 0.999) * d);
   });
 
   return (
@@ -238,19 +242,36 @@ function ScrubScene() {
 
             <div className="lg:col-span-6 flex justify-center">
               <VideoFrame stageLabel={STAGES[stage].label} barWidth={barWidth}>
-                {armed && (
-                  <video
-                    ref={videoRef}
-                    className="w-full h-full object-cover"
-                    poster="/images/transformare-poster.jpg"
-                    muted
-                    playsInline
-                    preload="auto"
-                    disablePictureInPicture
-                  >
-                    <source src="/videos/transformare-scrub.mp4" type="video/mp4" />
-                  </video>
-                )}
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  poster="/images/transformare-poster.jpg"
+                  muted
+                  playsInline
+                  preload="auto"
+                  disablePictureInPicture
+                  onLoadedMetadata={(e) => {
+                    const v = e.currentTarget;
+                    durRef.current = v.duration || 0;
+                    try {
+                      v.pause();
+                      v.currentTime = 0.001;
+                    } catch {
+                      /* noop */
+                    }
+                  }}
+                  onSeeked={() => {
+                    const v = videoRef.current;
+                    if (!v) return;
+                    if (Math.abs(v.currentTime - pendingRef.current) > 0.04) {
+                      v.currentTime = pendingRef.current;
+                    } else {
+                      seekingRef.current = false;
+                    }
+                  }}
+                >
+                  <source src="/videos/transformare-scrub.mp4" type="video/mp4" />
+                </video>
 
                 <motion.div
                   className="absolute bottom-7 left-0 right-0 flex flex-col items-center gap-1 pointer-events-none"
@@ -268,7 +289,7 @@ function ScrubScene() {
   );
 }
 
-/* ── Mobile / reduced-motion: autoplay loop scene ──────── */
+/* ── Mobile: autoplay loop scene ───────────────────────── */
 function LoopScene() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stage, setStage] = useState(0);
@@ -349,5 +370,5 @@ function LoopScene() {
 export default function Transformare() {
   const isDesktop = useIsDesktop();
   const reduced = useReducedMotion();
-  return isDesktop && !reduced ? <ScrubScene /> : <LoopScene />;
+  return isDesktop ? <ScrubScene reduced={reduced} /> : <LoopScene />;
 }
