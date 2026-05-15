@@ -11,9 +11,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     if (!isDesktop || reduced) return;
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 0.6,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
     });
 
     let raf = 0;
