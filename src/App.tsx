@@ -7,6 +7,7 @@ import Loader from './components/Loader';
 const Marquee = lazy(() => import('./components/Marquee'));
 const Stats = lazy(() => import('./sections/Stats'));
 const BeforeAfter = lazy(() => import('./sections/BeforeAfter'));
+const Transformare = lazy(() => import('./sections/Transformare'));
 const Services = lazy(() => import('./sections/Services'));
 const AboutWhy = lazy(() => import('./sections/AboutWhy'));
 const VideoReel = lazy(() => import('./sections/VideoReel'));
@@ -39,6 +40,7 @@ function App() {
             <Marquee />
             <Stats />
             <BeforeAfter />
+            <Transformare />
             <Services />
             <AboutWhy />
             <VideoReel />
