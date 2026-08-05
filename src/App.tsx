@@ -11,6 +11,7 @@ const Stats = lazy(() => import('./sections/Stats'));
 const BeforeAfter = lazy(() => import('./sections/BeforeAfter'));
 const Transformare = lazy(() => import('./sections/Transformare'));
 const Services = lazy(() => import('./sections/Services'));
+const Polish = lazy(() => import('./sections/Polish'));
 const AboutWhy = lazy(() => import('./sections/AboutWhy'));
 const VideoReel = lazy(() => import('./sections/VideoReel'));
 const Location = lazy(() => import('./sections/Location'));
@@ -47,6 +48,7 @@ function App() {
             <BeforeAfter />
             <Transformare />
             <Services />
+            <Polish />
             <AboutWhy />
             <VideoReel />
             <Location />
